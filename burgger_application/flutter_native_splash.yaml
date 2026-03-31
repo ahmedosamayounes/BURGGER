@@ -1,0 +1,10 @@
+flutter_native_splash:
+  # ios & android below 12
+  color: "#2C3732"  ##====================================[REQUIRED]==========
+  image: assets/images/Abstract Brand Mark (Burger).png
+
+  
+  # android 12
+  android_12:
+   color: "#2C3732"  ##====================================[REQUIRED]==========
+   image: assets/images/Abstract Brand Mark (Burger).png
