@@ -2,6 +2,7 @@ class ApiConstants {
   static const String apiBaseUrl = 'https://sonic-zdi0.onrender.com/api/';
   static const String loginEndpoint = 'login';
   static const String signUpEndpoint = 'register';
+  static const String categoriesEndpoint = 'categories';
   
 
 }

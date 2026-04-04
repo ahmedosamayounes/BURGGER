@@ -21,8 +21,8 @@ class BlocListenerLogin extends StatelessWidget {
           loading: () {
             showDialog(
               context: context,
-              builder: (context) =>  Center(
-                child: CircularProgressIndicator(color: Colors.red),
+              builder: (context) => const  Center(
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
               ),
             );
           },
@@ -51,7 +51,7 @@ class BlocListenerLogin extends StatelessWidget {
             onPressed: () {
               context.pop();
             },
-            child: Text('Got it', style: AppTextStyle.font16PrimaryColorBold),
+            child: Text('Got it', style: AppTextStyle.font14BalackColorBold),
           ),
         ],
       ),

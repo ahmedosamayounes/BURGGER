@@ -11,22 +11,20 @@ class Header extends StatelessWidget {
     return Center(
       child: Container(
         width: 300.w, // مثلاً خلي الـ body 300 وحدة عرض فقط
-        color: Colors.white,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center, // محتوى داخل
           children: [
             RichText(
               text: TextSpan(
                 children: [
                   TextSpan(
                     text: 'Join the ',
-                    style: AppTextStyle.font40PrimaryColorExtraBold,
+                    style: AppTextStyle.font40WhitelightColorExtraBold,
                   ),
 
                   TextSpan(
                     text: 'Digital Concierge ',
 
-                    style: AppTextStyle.font40WhitelightColorExtraBold,
+                    style: AppTextStyle.font40PrimaryColorExtraBold,
                   ),
                 ],
               ),

@@ -14,6 +14,7 @@ class AppButton extends StatelessWidget {
   final TextStyle textStyle;
   final VoidCallback
   onPressed; // to handle button press events , function that takes no arguments and returns void
+  final Widget? icon;
   const AppButton({
     super.key,
     this.borderRadius,
@@ -25,21 +26,27 @@ class AppButton extends StatelessWidget {
     required this.buttonText,
     required this.textStyle,
     required this.onPressed,
+    this.icon,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return TextButton.icon(
       onPressed: onPressed,
+      label: Text(buttonText, style: textStyle),
+      icon: icon ?? Icon(Icons.arrow_forward, color: Colors.black),
+
       style: ButtonStyle(
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 35),
           ),
         ),
+
         backgroundColor: WidgetStatePropertyAll(
           backgroundColor ?? AppColors.primaryColor,
         ),
+
         padding: WidgetStatePropertyAll<EdgeInsets>(
           EdgeInsets.symmetric(
             horizontal: horizontalPadding?.w ?? 12.w,
@@ -51,8 +58,6 @@ class AppButton extends StatelessWidget {
           // to make the button take the full width of its parent by default
         ),
       ),
-
-      child: Text(buttonText, style: textStyle),
     );
   }
 }
