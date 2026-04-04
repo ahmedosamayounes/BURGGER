@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BurggerApp extends StatelessWidget {
-    final AppRouter appRouter;
+  final AppRouter appRouter;
 
-  const BurggerApp({super.key, required this. appRouter});
+  const BurggerApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {

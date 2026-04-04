@@ -39,11 +39,14 @@ class AppTextFormField extends StatelessWidget {
       children: [
         Text(
           text ?? '',
-          style: AppTextStyle.font14TextColorMedium.copyWith(letterSpacing: 1.5), 
+          style: AppTextStyle.font14TextColorMedium.copyWith(
+            letterSpacing: 1.5,
+          ),
         ),
         Gap(10.h),
         TextFormField(
-          cursorColor: Colors.black,
+          style: TextStyle(color: Colors.grey[600]),
+          cursorColor: AppColors.hintColor,
           cursorHeight: 20.h,
 
           validator: (value) {
@@ -54,6 +57,7 @@ class AppTextFormField extends StatelessWidget {
           obscureText: isObscureText ?? false,
           decoration: InputDecoration(
             hintText: hinttext,
+
             hintStyle: hintStyle ?? AppTextStyle.font16TextColorReqular,
             fillColor: backgroundColor ?? AppColors.whitelightColor,
             filled: true,

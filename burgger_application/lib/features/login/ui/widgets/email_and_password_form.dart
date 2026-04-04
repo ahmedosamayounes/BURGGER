@@ -53,6 +53,11 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
       child: Column(
         children: [
           AppTextFormField(
+            prefixIcon: Icon(
+              Icons.email_outlined,
+              size: 22,
+              color: AppColors.hintColor,
+            ),
             text: 'EMAIL OR USERNAME',
             hinttext: 'chef@pureburger.com',
             controller: context.read<LoginCubit>().emailController,
@@ -68,6 +73,7 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
           Gap(20.h),
           AppTextFormField(
             text: 'PASSWORD',
+            prefixIcon: Icon(Icons.lock_outline , size: 22, color: AppColors.hintColor,),
             hinttext: '********',
             controller: context.read<LoginCubit>().passwordController,
             isObscureText: isObscureText,
@@ -79,6 +85,8 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
               },
               child: Icon(
                 isObscureText ? Icons.visibility_off : Icons.visibility,
+                size: 22,
+                color: AppColors.hintColor,
               ),
             ),
             validator: (value) {
@@ -91,9 +99,8 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              
               'Forgot Password?',
-              style: TextStyle(color: AppColors.secoundryColor ),
+              style: TextStyle(color: AppColors.secoundryColor),
             ),
           ),
 

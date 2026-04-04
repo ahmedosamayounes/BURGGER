@@ -19,28 +19,34 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.h),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                BrandHeader(),
-                Gap(60.h),
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          body: Padding(
+            padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.h),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  BrandHeader(),
+                  Gap(60.h),
 
-                EmailAndPasswordForm(),
-                Gap(30.h),
-                AppButton(
-                  buttonText: 'Log in',
-                  textStyle: AppTextStyle.font18TextColorReqular,
-                  onPressed: () {
-                    checkIfValidThenLogin(context);
-                  },
-                ),
-                Gap(20.h),
-                DontHaveAccountText(),
-                BlocListenerLogin(),
-              ],
+                  EmailAndPasswordForm(),
+                  Gap(30.h),
+                  AppButton(
+                    icon: SizedBox.shrink(),
+                    buttonText: 'Log in',
+                    textStyle: AppTextStyle.font18TextColorReqular,
+                    onPressed: () {
+                      checkIfValidThenLogin(context);
+                    },
+                  ),
+                  Gap(20.h),
+                  DontHaveAccountText(),
+                  BlocListenerLogin(),
+                ],
+              ),
             ),
           ),
         ),
