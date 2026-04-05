@@ -1,5 +1,7 @@
 import 'package:burgger_application/core/networking/dio_factory.dart';
 import 'package:burgger_application/core/networking/web_service.dart';
+import 'package:burgger_application/features/home/data/repo/categories/categories_repo.dart';
+import 'package:burgger_application/features/home/logic/cubit/categories_cubit.dart';
 import 'package:burgger_application/features/login/data/repo/login_repo.dart';
 import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
 import 'package:burgger_application/features/signup/data/repo/signup_repo.dart';
@@ -25,4 +27,9 @@ Future<void> setupGetIt() async {
   // signup
   getIt.registerLazySingleton<SignupRepo>(() => SignupRepo(getIt()));
   getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
+
+  // categoryes
+  getIt.registerLazySingleton<CategoriesRepo>(() => CategoriesRepo(getIt()));
+  getIt.registerFactory<CategoriesCubit>(() => CategoriesCubit(getIt()));
+
 }

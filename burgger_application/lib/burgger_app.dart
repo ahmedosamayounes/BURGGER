@@ -19,7 +19,7 @@ class BurggerApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'BurggerApp',
         theme: ThemeData(scaffoldBackgroundColor: AppColors.backgroundColor),
-        initialRoute: RoutesString.register,
+        initialRoute: RoutesString.home,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

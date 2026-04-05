@@ -1,6 +1,7 @@
 import 'package:burgger_application/core/di/depnedency_injaction.dart';
 import 'package:burgger_application/core/networking/web_service.dart';
 import 'package:burgger_application/core/routing/routes_string.dart';
+import 'package:burgger_application/features/home/logic/cubit/categories_cubit.dart';
 import 'package:burgger_application/features/home/ui/home_screen.dart';
 import 'package:burgger_application/features/login/data/repo/login_repo.dart';
 import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
@@ -33,13 +34,15 @@ class AppRouter {
           ),
         );
 
-              case RoutesString.home:
+      case RoutesString.home:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
-            body: HomeScreen(),
+            body: BlocProvider(
+              create: (context) =>CategoriesCubit(getIt())..getCategories(),
+              child: HomeScreen(),
+            ),
           ),
         );
-
 
       default:
         return MaterialPageRoute(

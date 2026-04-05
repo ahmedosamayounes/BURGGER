@@ -10,6 +10,12 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.regular,
     color: AppColors.whitelightColor,
   );
+    static TextStyle font30WhitelightColorExtraBold = GoogleFonts.plusJakartaSans(
+    fontSize: 30.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: AppColors.whitelightColor,
+  );
+
 
   static TextStyle font40PrimaryColorExtraBold = GoogleFonts.plusJakartaSans(
     fontSize: 40.sp,
@@ -33,6 +39,7 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.medium,
     color: AppColors.textColor,
   );
+
   static TextStyle font14TextColorMedium = GoogleFonts.plusJakartaSans(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.medium,
