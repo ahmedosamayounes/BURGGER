@@ -1,5 +1,5 @@
 import 'package:burgger_application/core/networking/api_constans.dart';
-import 'package:burgger_application/features/home/data/repo/categories_model.dart';
+import 'package:burgger_application/features/home/data/models/categories/categories_model.dart';
 import 'package:burgger_application/features/login/data/models/login_reqeust_model.dart';
 import 'package:burgger_application/features/login/data/models/login_response_model.dart';
 import 'package:burgger_application/features/signup/data/models/signup_request_model.dart';
