@@ -23,6 +23,11 @@ class AppTextStyle {
     color: AppColors.primaryColor,
   );
 
+static TextStyle font30PrimaryColorExtraBold = GoogleFonts.plusJakartaSans(
+    fontSize: 30.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: AppColors.primaryColor,
+  );
   static TextStyle font40WhitelightColorExtraBold = GoogleFonts.plusJakartaSans(
     fontSize: 40.sp,
     fontWeight: FontWeightHelper.extraBold,

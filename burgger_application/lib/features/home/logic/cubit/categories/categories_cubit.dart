@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:burgger_application/core/networking/api_result.dart';
 import 'package:burgger_application/features/home/data/repo/categories/categories_repo.dart';
-import 'package:burgger_application/features/home/logic/cubit/categories_state.dart';
+import 'package:burgger_application/features/home/logic/cubit/categories/categories_state.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
   final CategoriesRepo categoriesRepo;

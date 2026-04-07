@@ -1,8 +1,10 @@
 import 'package:burgger_application/core/di/depnedency_injaction.dart';
 import 'package:burgger_application/core/networking/web_service.dart';
 import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/features/home/logic/cubit/categories_cubit.dart';
+import 'package:burgger_application/features/home/logic/cubit/categories/categories_cubit.dart';
+import 'package:burgger_application/features/home/logic/cubit/products/products_cubit.dart';
 import 'package:burgger_application/features/home/ui/home_screen.dart';
+import 'package:burgger_application/features/home/ui/widgets/products/product_deatlies.dart';
 import 'package:burgger_application/features/login/data/repo/login_repo.dart';
 import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
 import 'package:burgger_application/features/login/ui/login_screen.dart';
@@ -29,18 +31,25 @@ class AppRouter {
           builder: (_) => Scaffold(
             body: BlocProvider(
               create: (context) => getIt<SignupCubit>(),
-              child: RegisterScreen(),
+              child: const RegisterScreen(),
             ),
           ),
         );
 
+
       case RoutesString.home:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: BlocProvider(
-              create: (context) =>CategoriesCubit(getIt())..getCategories(),
-              child: HomeScreen(),
-            ),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => CategoriesCubit(getIt())..getCategories(),
+              ),
+
+              BlocProvider(
+                create: (context) => ProductsCubit(getIt())..getProduct(),
+              ),
+            ],
+            child:  HomeScreen(),
           ),
         );
 
