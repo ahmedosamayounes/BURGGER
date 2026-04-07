@@ -1,7 +1,9 @@
 import 'package:burgger_application/core/networking/dio_factory.dart';
 import 'package:burgger_application/core/networking/web_service.dart';
 import 'package:burgger_application/features/home/data/repo/categories/categories_repo.dart';
-import 'package:burgger_application/features/home/logic/cubit/categories_cubit.dart';
+import 'package:burgger_application/features/home/data/repo/products/products_repo.dart';
+import 'package:burgger_application/features/home/logic/cubit/categories/categories_cubit.dart';
+import 'package:burgger_application/features/home/logic/cubit/products/products_cubit.dart';
 import 'package:burgger_application/features/login/data/repo/login_repo.dart';
 import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
 import 'package:burgger_application/features/signup/data/repo/signup_repo.dart';
@@ -31,5 +33,9 @@ Future<void> setupGetIt() async {
   // categoryes
   getIt.registerLazySingleton<CategoriesRepo>(() => CategoriesRepo(getIt()));
   getIt.registerFactory<CategoriesCubit>(() => CategoriesCubit(getIt()));
+
+  //products
+  getIt.registerLazySingleton<ProductsRepo>(() => ProductsRepo(getIt()));
+  getIt.registerFactory<ProductsCubit>(() => ProductsCubit(getIt()));
 
 }
