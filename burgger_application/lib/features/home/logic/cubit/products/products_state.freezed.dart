@@ -55,13 +55,14 @@ extension ProductsStatePatterns on ProductsState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( ProductsStateLoading value)?  loading,TResult Function( ProductsStateSuccess value)?  success,TResult Function( ProductsStateError value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( ProductsStateLoading value)?  loading,TResult Function( ProductsStateSuccess value)?  success,TResult Function( ProductDetailsSuccess value)?  productDetailsSuccess,TResult Function( ProductsStateError value)?  error,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case ProductsStateLoading() when loading != null:
 return loading(_that);case ProductsStateSuccess() when success != null:
-return success(_that);case ProductsStateError() when error != null:
+return success(_that);case ProductDetailsSuccess() when productDetailsSuccess != null:
+return productDetailsSuccess(_that);case ProductsStateError() when error != null:
 return error(_that);case _:
   return orElse();
 
@@ -80,13 +81,14 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( ProductsStateLoading value)  loading,required TResult Function( ProductsStateSuccess value)  success,required TResult Function( ProductsStateError value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( ProductsStateLoading value)  loading,required TResult Function( ProductsStateSuccess value)  success,required TResult Function( ProductDetailsSuccess value)  productDetailsSuccess,required TResult Function( ProductsStateError value)  error,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case ProductsStateLoading():
 return loading(_that);case ProductsStateSuccess():
-return success(_that);case ProductsStateError():
+return success(_that);case ProductDetailsSuccess():
+return productDetailsSuccess(_that);case ProductsStateError():
 return error(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -104,13 +106,14 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( ProductsStateLoading value)?  loading,TResult? Function( ProductsStateSuccess value)?  success,TResult? Function( ProductsStateError value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( ProductsStateLoading value)?  loading,TResult? Function( ProductsStateSuccess value)?  success,TResult? Function( ProductDetailsSuccess value)?  productDetailsSuccess,TResult? Function( ProductsStateError value)?  error,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case ProductsStateLoading() when loading != null:
 return loading(_that);case ProductsStateSuccess() when success != null:
-return success(_that);case ProductsStateError() when error != null:
+return success(_that);case ProductDetailsSuccess() when productDetailsSuccess != null:
+return productDetailsSuccess(_that);case ProductsStateError() when error != null:
 return error(_that);case _:
   return null;
 
@@ -128,12 +131,13 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<ProductData?>? productsDataList)?  success,TResult Function( ErrorHandler errorHandler)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<ProductData?>? productsDataList)?  success,TResult Function( ProductData productData)?  productDetailsSuccess,TResult Function( ErrorHandler errorHandler)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case ProductsStateLoading() when loading != null:
 return loading();case ProductsStateSuccess() when success != null:
-return success(_that.productsDataList);case ProductsStateError() when error != null:
+return success(_that.productsDataList);case ProductDetailsSuccess() when productDetailsSuccess != null:
+return productDetailsSuccess(_that.productData);case ProductsStateError() when error != null:
 return error(_that.errorHandler);case _:
   return orElse();
 
@@ -152,12 +156,13 @@ return error(_that.errorHandler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<ProductData?>? productsDataList)  success,required TResult Function( ErrorHandler errorHandler)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<ProductData?>? productsDataList)  success,required TResult Function( ProductData productData)  productDetailsSuccess,required TResult Function( ErrorHandler errorHandler)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case ProductsStateLoading():
 return loading();case ProductsStateSuccess():
-return success(_that.productsDataList);case ProductsStateError():
+return success(_that.productsDataList);case ProductDetailsSuccess():
+return productDetailsSuccess(_that.productData);case ProductsStateError():
 return error(_that.errorHandler);case _:
   throw StateError('Unexpected subclass');
 
@@ -175,12 +180,13 @@ return error(_that.errorHandler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<ProductData?>? productsDataList)?  success,TResult? Function( ErrorHandler errorHandler)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<ProductData?>? productsDataList)?  success,TResult? Function( ProductData productData)?  productDetailsSuccess,TResult? Function( ErrorHandler errorHandler)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case ProductsStateLoading() when loading != null:
 return loading();case ProductsStateSuccess() when success != null:
-return success(_that.productsDataList);case ProductsStateError() when error != null:
+return success(_that.productsDataList);case ProductDetailsSuccess() when productDetailsSuccess != null:
+return productDetailsSuccess(_that.productData);case ProductsStateError() when error != null:
 return error(_that.errorHandler);case _:
   return null;
 
@@ -321,6 +327,72 @@ class _$ProductsStateSuccessCopyWithImpl<$Res>
   return _then(ProductsStateSuccess(
 freezed == productsDataList ? _self._productsDataList : productsDataList // ignore: cast_nullable_to_non_nullable
 as List<ProductData?>?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class ProductDetailsSuccess implements ProductsState {
+  const ProductDetailsSuccess(this.productData);
+  
+
+ final  ProductData productData;
+
+/// Create a copy of ProductsState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ProductDetailsSuccessCopyWith<ProductDetailsSuccess> get copyWith => _$ProductDetailsSuccessCopyWithImpl<ProductDetailsSuccess>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductDetailsSuccess&&(identical(other.productData, productData) || other.productData == productData));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,productData);
+
+@override
+String toString() {
+  return 'ProductsState.productDetailsSuccess(productData: $productData)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ProductDetailsSuccessCopyWith<$Res> implements $ProductsStateCopyWith<$Res> {
+  factory $ProductDetailsSuccessCopyWith(ProductDetailsSuccess value, $Res Function(ProductDetailsSuccess) _then) = _$ProductDetailsSuccessCopyWithImpl;
+@useResult
+$Res call({
+ ProductData productData
+});
+
+
+
+
+}
+/// @nodoc
+class _$ProductDetailsSuccessCopyWithImpl<$Res>
+    implements $ProductDetailsSuccessCopyWith<$Res> {
+  _$ProductDetailsSuccessCopyWithImpl(this._self, this._then);
+
+  final ProductDetailsSuccess _self;
+  final $Res Function(ProductDetailsSuccess) _then;
+
+/// Create a copy of ProductsState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? productData = null,}) {
+  return _then(ProductDetailsSuccess(
+null == productData ? _self.productData : productData // ignore: cast_nullable_to_non_nullable
+as ProductData,
   ));
 }
 

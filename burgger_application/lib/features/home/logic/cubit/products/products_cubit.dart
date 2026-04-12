@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:burgger_application/core/networking/api_error_handler.dart';
 import 'package:burgger_application/core/networking/api_result.dart';
 import 'package:burgger_application/features/home/data/models/products/products_model.dart';
+import 'package:burgger_application/features/home/data/repo/product_details/product_details_repo.dart';
 import 'package:burgger_application/features/home/data/repo/products/products_repo.dart';
 import 'package:burgger_application/features/home/logic/cubit/categories/categories_state.dart';
 import 'package:burgger_application/features/home/logic/cubit/products/products_state.dart';
@@ -23,8 +24,7 @@ class ProductsCubit extends Cubit<ProductsState> {
         emit(ProductsState.error(error));
       },
     );
-    
-
-    
   }
+
+
 }

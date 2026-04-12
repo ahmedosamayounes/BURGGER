@@ -1,10 +1,14 @@
 import 'package:burgger_application/core/di/depnedency_injaction.dart';
 import 'package:burgger_application/core/networking/web_service.dart';
 import 'package:burgger_application/core/routing/routes_string.dart';
+import 'package:burgger_application/features/home/data/models/products/products_model.dart';
 import 'package:burgger_application/features/home/logic/cubit/categories/categories_cubit.dart';
+import 'package:burgger_application/features/home/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
 import 'package:burgger_application/features/home/logic/cubit/products/products_cubit.dart';
 import 'package:burgger_application/features/home/ui/home_screen.dart';
-import 'package:burgger_application/features/home/ui/widgets/products/product_deatlies.dart';
+import 'package:burgger_application/features/product_details/logic/cubit/side_options_cubit.dart';
+import 'package:burgger_application/features/product_details/logic/toppings/toppings_cubit.dart';
+import 'package:burgger_application/features/product_details/ui/product_deatlies_screen.dart';
 import 'package:burgger_application/features/login/data/repo/login_repo.dart';
 import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
 import 'package:burgger_application/features/login/ui/login_screen.dart';
@@ -36,7 +40,6 @@ class AppRouter {
           ),
         );
 
-
       case RoutesString.home:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
@@ -49,7 +52,31 @@ class AppRouter {
                 create: (context) => ProductsCubit(getIt())..getProduct(),
               ),
             ],
-            child:  HomeScreen(),
+            child: HomeScreen(),
+          ),
+        );
+
+      case RoutesString.productDetail:
+        final product = settings.arguments as ProductData;
+
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    ProductDeatliesCubit(getIt())
+                      ..getProductById(product.id ?? 1),
+              ),
+              BlocProvider(
+                create: (context) => ToppingsCubit(getIt())..getToppings(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    SideOptionsCubit(getIt())..getSideOptions(),
+              ),
+            ],
+
+            child: ProductDeatlies(product: settings.arguments as ProductData),
           ),
         );
 
