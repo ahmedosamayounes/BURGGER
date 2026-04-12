@@ -1,15 +1,16 @@
+import 'package:burgger_application/core/routing/routes_string.dart';
 import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/features/home/data/models/products/products_model.dart';
-import 'package:burgger_application/features/home/ui/widgets/products/product_deatlies.dart';
+import 'package:burgger_application/features/product_details/ui/product_deatlies_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class ProductsList extends StatelessWidget {
   final List<ProductData?> products;
+
   const ProductsList({super.key, required this.products});
 
-  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,7 +29,7 @@ class ProductsList extends StatelessWidget {
             width: 185,
             decoration: BoxDecoration(
               color: AppColors.backgroundColor2,
-      
+
               borderRadius: BorderRadius.circular(50),
             ),
             child: Padding(
@@ -37,32 +38,31 @@ class ProductsList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       // when i click go to product deatiles
-                        Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (context) => ProductDeatlies(product: products[index]!,)
-                    ),
-                  );
+
+                      Navigator.pushNamed(
+                        context,
+                        RoutesString.productDetail,
+                        arguments: products[index],
+                      );
                     },
                     child: Center(
                       child: SizedBox(
                         width: 140,
                         height: 150,
-                        child: Image.network(products[index]!.image ?? '' ,),
+                        child: Image.network(products[index]!.image ?? ''),
                       ),
                     ),
                   ),
                   Gap(8),
                   Text(
                     products[index]!.name ?? '',
-                    
+
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textColor,
-                      
                     ),
                     maxLines: 2,
                   ),
@@ -101,8 +101,11 @@ class ProductsList extends StatelessWidget {
                           Gap(40),
                           CircleAvatar(
                             backgroundColor: AppColors.primaryColor,
-                            child: Icon(Icons.add , color: AppColors.buttonTextColor,),
-                          )
+                            child: Icon(
+                              Icons.add,
+                              color: AppColors.buttonTextColor,
+                            ),
+                          ),
                         ],
                       ),
                     ],

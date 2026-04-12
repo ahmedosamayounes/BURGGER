@@ -4,6 +4,10 @@ class ApiConstants {
   static const String signUpEndpoint = 'register';
   static const String categoriesEndpoint = 'categories';
   static const String productsEndpoint = 'products';
+  static const String toppingsEndpoint = 'toppings';
+  static const String productsByIdEndpoint = 'products/';
+  static const String sideOptionsEndpoint = 'side-options';
+  static const String cartEndpoint = 'cart/add';
   
 
 }
