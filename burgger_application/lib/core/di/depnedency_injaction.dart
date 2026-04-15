@@ -14,6 +14,9 @@ import 'package:burgger_application/features/product_details/data/repo/side_opti
 import 'package:burgger_application/features/product_details/data/repo/toppings_repo.dart';
 import 'package:burgger_application/features/product_details/logic/cubit/side_options/side_options_cubit.dart';
 import 'package:burgger_application/features/product_details/logic/cubit/toppings/toppings_cubit.dart';
+import 'package:burgger_application/features/profile/data/repo/profile_repo.dart';
+import 'package:burgger_application/features/profile/logic/cubit_get_data/profile_cubit.dart';
+import 'package:burgger_application/features/profile/logic/cubit_update_data/profile_update_cubit.dart';
 import 'package:burgger_application/features/signup/data/repo/signup_repo.dart';
 import 'package:burgger_application/features/signup/logic/cubit/signup_cubit.dart';
 import 'package:dio/dio.dart';
@@ -47,18 +50,30 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<ProductsCubit>(() => ProductsCubit(getIt()));
 
   // product Deatils
-  getIt.registerLazySingleton<ProductDetailsRepo>(() => ProductDetailsRepo(getIt()));
-  getIt.registerFactory<ProductDeatliesCubit>(() => ProductDeatliesCubit(getIt()));
+  getIt.registerLazySingleton<ProductDetailsRepo>(
+    () => ProductDetailsRepo(getIt()),
+  );
+  getIt.registerFactory<ProductDeatliesCubit>(
+    () => ProductDeatliesCubit(getIt()),
+  );
 
   // Toppings
   getIt.registerLazySingleton<ToppingsRepo>(() => ToppingsRepo(getIt()));
   getIt.registerFactory<ToppingsCubit>(() => ToppingsCubit(getIt()));
 
   // Side Options
-    getIt.registerLazySingleton<SideOptionsRepo>(() => SideOptionsRepo(getIt()));
+  getIt.registerLazySingleton<SideOptionsRepo>(() => SideOptionsRepo(getIt()));
   getIt.registerFactory<SideOptionsCubit>(() => SideOptionsCubit(getIt()));
 
   // Cart
   getIt.registerLazySingleton<CartRepo>(() => CartRepo(getIt()));
   getIt.registerFactory<CartCubit>(() => CartCubit(getIt()));
+
+  // Profile Get data
+  getIt.registerLazySingleton<ProfileRepo>(() => ProfileRepo(getIt()));
+  getIt.registerFactory<ProfileCubit>(() => ProfileCubit(getIt()));
+  // Profile Update data 
+  getIt.registerFactory<ProfileUpdateCubit>(() => ProfileUpdateCubit(getIt()));
+
+  
 }
