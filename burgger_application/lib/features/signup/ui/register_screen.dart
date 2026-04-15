@@ -1,6 +1,5 @@
 import 'package:burgger_application/core/shared/app_button.dart';
 import 'package:burgger_application/core/shared/app_logo.dart';
-import 'package:burgger_application/core/shared/app_text_form_field.dart';
 import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/core/theming/styles.dart';
 import 'package:burgger_application/features/signup/logic/cubit/signup_cubit.dart';
