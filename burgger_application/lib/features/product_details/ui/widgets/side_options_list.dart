@@ -1,7 +1,7 @@
 import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/side_options_cubit.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/side_options_state.dart';
+import 'package:burgger_application/features/product_details/logic/cubit/side_options/side_options_cubit.dart';
+import 'package:burgger_application/features/product_details/logic/cubit/side_options/side_options_state.dart';
 import 'package:burgger_application/features/product_details/ui/widgets/toppings_and_side_options_ui.dart';
 
 import 'package:flutter/material.dart';
@@ -28,6 +28,8 @@ class SideOptionsList extends StatelessWidget {
                 itemCount: sideOptionsList!.length,
                 itemBuilder: (context, index) {
                   return ToppingsAndSideOptionsUi(
+                    id: sideOptionsList[index]!.id?.toInt() ?? 0,
+
                     name: sideOptionsList[index]!.name ?? '',
                     image: sideOptionsList[index]!.image ?? '',
                   );

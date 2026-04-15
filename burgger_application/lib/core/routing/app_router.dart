@@ -1,13 +1,15 @@
 import 'package:burgger_application/core/di/depnedency_injaction.dart';
 import 'package:burgger_application/core/networking/web_service.dart';
 import 'package:burgger_application/core/routing/routes_string.dart';
+import 'package:burgger_application/features/cart/logic/cubit/cart_cubit.dart';
+import 'package:burgger_application/features/cart/ui/cart_screen.dart';
 import 'package:burgger_application/features/home/data/models/products/products_model.dart';
 import 'package:burgger_application/features/home/logic/cubit/categories/categories_cubit.dart';
-import 'package:burgger_application/features/home/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
+import 'package:burgger_application/features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
 import 'package:burgger_application/features/home/logic/cubit/products/products_cubit.dart';
 import 'package:burgger_application/features/home/ui/home_screen.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/side_options_cubit.dart';
-import 'package:burgger_application/features/product_details/logic/toppings/toppings_cubit.dart';
+import 'package:burgger_application/features/product_details/logic/cubit/side_options/side_options_cubit.dart';
+import 'package:burgger_application/features/product_details/logic/cubit/toppings/toppings_cubit.dart';
 import 'package:burgger_application/features/product_details/ui/product_deatlies_screen.dart';
 import 'package:burgger_application/features/login/data/repo/login_repo.dart';
 import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
@@ -74,9 +76,21 @@ class AppRouter {
                 create: (context) =>
                     SideOptionsCubit(getIt())..getSideOptions(),
               ),
+              BlocProvider(create: (context) => getIt<CartCubit>()),
             ],
 
             child: ProductDeatlies(product: settings.arguments as ProductData),
+          ),
+        );
+
+      case RoutesString.cart:
+        return MaterialPageRoute(
+          builder: (_) => Scaffold(
+            body: BlocProvider(
+              create: (context) => CartCubit(getIt()),
+
+              child: CartScreen(),
+            ),
           ),
         );
 

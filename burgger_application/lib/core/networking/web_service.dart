@@ -1,5 +1,6 @@
 import 'package:burgger_application/core/networking/api_constans.dart';
 import 'package:burgger_application/features/cart/data/models/cart_request_model.dart';
+import 'package:burgger_application/features/cart/data/models/add_cart_response_model.dart';
 import 'package:burgger_application/features/cart/data/models/cart_response_model.dart';
 import 'package:burgger_application/features/home/data/models/categories/categories_model.dart';
 import 'package:burgger_application/features/home/data/models/products/products_model.dart';
@@ -51,6 +52,10 @@ abstract class WebService {
   // Add to Cart Screen 
   @POST(ApiConstants.cartEndpoint)
   Future<AddCartResponseModel> addToCart(@Body() CartRequestModel cartRequestModel);
+
+
+  @GET(ApiConstants.cartdata)
+Future<CartResponseModel> getCart();
 
 
 

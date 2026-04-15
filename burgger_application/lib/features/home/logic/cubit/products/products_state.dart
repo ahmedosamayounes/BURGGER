@@ -14,4 +14,5 @@ class ProductsState with _$ProductsState {
   const factory ProductsState.success(List<ProductData?>? productsDataList) = ProductsStateSuccess;
   const factory ProductsState.productDetailsSuccess(ProductData productData) = ProductDetailsSuccess;
   const factory ProductsState.error(ErrorHandler errorHandler) = ProductsStateError;
+  const factory ProductsState.selectionChanged() = SelectionChanged;
 }

@@ -17,14 +17,14 @@ Map<String, dynamic> _$CartRequestModelToJson(CartRequestModel instance) =>
     <String, dynamic>{'items': instance.items};
 
 CartItem _$CartItemFromJson(Map<String, dynamic> json) => CartItem(
-  productId: (json['product_id'] as num?)?.toInt(),
-  quantity: (json['quantity'] as num?)?.toInt(),
-  spicy: (json['spicy'] as num?)?.toDouble(),
-  toppings: (json['toppings'] as List<dynamic>?)
-      ?.map((e) => (e as num).toInt())
+  productId: (json['product_id'] as num).toInt(),
+  quantity: (json['quantity'] as num).toInt(),
+  spicy: (json['spicy'] as num).toDouble(),
+  toppings: (json['toppings'] as List<dynamic>)
+      .map((e) => (e as num).toInt())
       .toList(),
-  sideOptions: (json['side_options'] as List<dynamic>?)
-      ?.map((e) => (e as num).toInt())
+  sideOptions: (json['side_options'] as List<dynamic>)
+      .map((e) => (e as num).toInt())
       .toList(),
 );
 
