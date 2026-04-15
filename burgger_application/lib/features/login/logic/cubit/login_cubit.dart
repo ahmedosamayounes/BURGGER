@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:burgger_application/core/networking/api_result.dart';
+import 'package:burgger_application/core/networking/dio_factory.dart';
 import 'package:burgger_application/features/login/data/models/login_reqeust_model.dart';
 import 'package:burgger_application/features/login/data/repo/login_repo.dart';
 import 'package:burgger_application/features/login/logic/cubit/login_state.dart';
@@ -27,6 +28,9 @@ class LoginCubit extends Cubit<LoginState> {
         
     response.when(
       success: (loginResponse) {
+        print("TOKEN FROM LOGIN = ${loginResponse.data?.token}");
+          DioFactory.setToken(loginResponse.data!.token!); // 👈 هنا
+
         emit(LoginState.success(loginResponse));
       },
       failure: (error) {

@@ -1,9 +1,12 @@
+import 'package:burgger_application/core/routing/routes_string.dart';
 import 'package:burgger_application/core/shared/app_button.dart';
 import 'package:burgger_application/core/shared/app_logo.dart';
 import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/core/theming/styles.dart';
+import 'package:burgger_application/features/cart/data/models/cart_request_model.dart';
+import 'package:burgger_application/features/cart/logic/cubit/cart_cubit.dart';
 import 'package:burgger_application/features/home/data/models/products/products_model.dart';
-import 'package:burgger_application/features/home/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
+import 'package:burgger_application/features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
 import 'package:burgger_application/features/home/logic/cubit/products/products_state.dart';
 import 'package:burgger_application/features/product_details/ui/widgets/product_deatlies_photo_name.dart';
 import 'package:burgger_application/features/product_details/ui/widgets/side_options_list.dart';
@@ -87,7 +90,34 @@ class ProductDeatlies extends StatelessWidget {
                           ],
                         ),
                         Gap(20),
-                        AppButton(buttonText: 'Add to Cart', textStyle: AppTextStyle.font18TextColorReqular, onPressed: () {})
+                        AppButton(
+                          buttonText: 'Add to Cart',
+                          textStyle: AppTextStyle.font18TextColorReqular,
+                          onPressed: () async {
+                            final productCubit = context
+                                .read<ProductDeatliesCubit>();
+                            final cartCubit = context.read<CartCubit>();
+
+                            if (product.id == null) return;
+
+                            final model = CartRequestModel(
+                              items: [
+                                CartItem(
+                                  productId: product.id!,
+                                  quantity: 1,
+                                  spicy: 0.1,
+                                  toppings: productCubit.selectedToppings,
+                                  sideOptions: productCubit.selectedSides,
+                                ),
+                              ],
+                            );
+
+                            cartCubit.addToCart(model);
+                            if (context.mounted) {
+                              Navigator.pushNamed(context, RoutesString.cart);
+                            }
+                          },
+                        ),
                       ],
                     );
                   },

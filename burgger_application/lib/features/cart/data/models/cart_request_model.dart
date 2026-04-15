@@ -17,24 +17,24 @@ class CartRequestModel {
 @JsonSerializable()
 class CartItem {
   @JsonKey(name: 'product_id')
-  final int? productId;
+  final int productId;
   
-  final int? quantity;
+  final int quantity;
   
   // استخدمنا double لأنك باعت في المثال 0.1
-  final double? spicy;
+  final double spicy;
   
-  final List<int>? toppings;
+  final List<int> toppings;
   
   @JsonKey(name: 'side_options')
-  final List<int>? sideOptions;
+  final List<int> sideOptions;
 
   CartItem({
-    this.productId,
-    this.quantity,
-    this.spicy,
-    this.toppings,
-    this.sideOptions,
+  required   this.productId,
+  required   this.quantity,
+  required   this.spicy,
+   required  this.toppings,
+   required  this.sideOptions,
   });
 
   factory CartItem.fromJson(Map<String, dynamic> json) => 
