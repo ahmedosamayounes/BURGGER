@@ -61,6 +61,9 @@ abstract class WebService {
   @GET(ApiConstants.cartdata)
   Future<CartResponseModel> getCart();
 
+    @DELETE("${ApiConstants.deleteItemFromCart}/{id}")
+  Future<void> deleteFromCart(@Path("id") int id);
+
   // Profile Screen (Get Profile Data)
   @GET(ApiConstants.profileEndPoint)
   Future<ProfileResponseModel> getProfileData();
