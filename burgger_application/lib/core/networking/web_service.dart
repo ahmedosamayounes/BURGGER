@@ -37,27 +37,29 @@ abstract class WebService {
   @GET(ApiConstants.productsEndpoint)
   Future<ProductsModel> getProducts();
 
-  // Get Product by id 
-  @GET(ApiConstants.productsEndpoint + "/{id}")
+  // Get Product by id
+  @GET("${ApiConstants.productsEndpoint}/{id}")
   Future<ProductData> getProductById(@Path("id") int id);
 
   // Product Deatlies (Toppings)
-  @GET(ApiConstants.toppingsEndpoint) 
+  @GET(ApiConstants.toppingsEndpoint)
   Future<ProductOptionModel> getToppings();
 
   // Product Deatlies (Side Options)
-  @GET(ApiConstants.sideOptionsEndpoint) 
+  @GET(ApiConstants.sideOptionsEndpoint)
   Future<ProductOptionModel> getSideOptions();
 
-  // Add to Cart Screen 
+  // Add to Cart Screen
   @POST(ApiConstants.cartEndpoint)
-  Future<AddCartResponseModel> addToCart(@Body() CartRequestModel cartRequestModel);
+  Future<AddCartResponseModel> addToCart(
+    @Body() CartRequestModel cartRequestModel,
+  );
 
-
+  // Get Cart Data
   @GET(ApiConstants.cartdata)
-Future<CartResponseModel> getCart();
+  Future<CartResponseModel> getCart();
 
-
-
-
+  // Delete Product From Cart 
+  @DELETE("${ApiConstants.deleteItemFromCart}/{id}")
+  Future<void> deleteFromCart(@Path("id") int id);
 }

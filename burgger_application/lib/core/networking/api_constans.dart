@@ -8,11 +8,10 @@ class ApiConstants {
   static const String productsByIdEndpoint = 'products/';
   static const String sideOptionsEndpoint = 'side-options';
   static const String cartEndpoint = 'cart/add';
-    static const String cartdata = 'cart';
-
-  
-
+  static const String cartdata = 'cart';
+  static const String deleteItemFromCart = 'cart/remove';
 }
+
 class ApiErrors {
   static const String badRequestError = "badRequestError";
   static const String noContent = "noContent";
