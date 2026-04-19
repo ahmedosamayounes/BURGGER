@@ -1,8 +1,12 @@
+import 'package:burgger_application/core/shared/app_button.dart';
 import 'package:burgger_application/core/theming/app_colors.dart';
+import 'package:burgger_application/core/theming/styles.dart';
 import 'package:burgger_application/features/cart/logic/cubit/cart_cubit.dart';
 import 'package:burgger_application/features/cart/logic/cubit/cart_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -14,8 +18,8 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
-    super.initState();
     context.read<CartCubit>().getCart();
+    super.initState();
   }
 
   @override
@@ -32,46 +36,212 @@ class _CartScreenState extends State<CartScreen> {
                   return const Center(child: Text("Cart is empty"));
                 }
 
-                return ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    final item = items[index];
-
-                    return Card(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.network(item.image ?? '' ),
-                          Text(item.name ?? ''),
-                          Text("Qty: ${item.quantity ?? 0}"),
-                          Text("Price: ${item.price ?? 0}"),
-
-                          Wrap(
-                            children: (item.toppings ?? [])
-                                .map(
-                                  (t) => Column(
-                                    children: [
-                                      Text(t.name ?? ''),
-                                      Image.network(t.image ?? '', width: 40),
-                                    ],
-                                  ),
-                                )
-                                .toList(),
-                          ),
-
-                          Wrap(
-                            children: (item.sideOptions ?? [])
-                                .map((s) => Text(s.name ?? ''))
-                                .toList(),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                return SingleChildScrollView(
+                  child: Padding(
+ padding: EdgeInsets.symmetric(
+                              vertical: 30.h,
+                              horizontal: 20.h,
+                            ),                    child: Column(
+                      children: [
+                        
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                                              
+                          itemCount: items.length,
+                          itemBuilder: (context, index) {
+                            final item = items[index];
+                                              
+                            return Card(
+                              color: AppColors.backgroundColor2,
+                              child: Container(
+                                width: 370,
+                                height: 450,
+                                decoration: BoxDecoration(
+                                  color: AppColors.backgroundColor2,
+                                            
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                            
+                                  children: [
+                                    Center(
+                                      child: Image.network(
+                                        item.image ?? '',
+                                        width: 160,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 15,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            item.name ?? '',
+                                            style:
+                                                AppTextStyle.font22WhiteColorBold,
+                                          ),
+                                            
+                                          Gap(30),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Toppings : ",
+                                                style: AppTextStyle
+                                                    .font14TextColorBold,
+                                              ),
+                                            
+                                              Wrap(
+                                                children: (item.toppings ?? [])
+                                                    .map(
+                                                      (t) => Padding(
+                                                        padding:
+                                                            EdgeInsets.symmetric(
+                                                              horizontal: 8.h,
+                                                            ),
+                                                        child: Column(
+                                                          children: [
+                                                            CircleAvatar(
+                                                              backgroundColor:
+                                                                  Colors.white,
+                                                              child:
+                                                                  Image.network(
+                                                                    t.image ?? '',
+                                                                    width: 35,
+                                                                  ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    )
+                                                    .toList(),
+                                              ),
+                                            ],
+                                          ),
+                                          Gap(20),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Side Optiops:",
+                                                style: AppTextStyle
+                                                    .font14TextColorBold,
+                                              ),
+                                            
+                                              Wrap(
+                                                children: (item.sideOptions ?? [])
+                                                    .map(
+                                                      (t) => Padding(
+                                                        padding:
+                                                            EdgeInsets.symmetric(
+                                                              horizontal: 5.h,
+                                                            ),
+                                                        child: Column(
+                                                          children: [
+                                                            CircleAvatar(
+                                                              backgroundColor:
+                                                                  Colors.white,
+                                                              child:
+                                                                  Image.network(
+                                                                    t.image ?? '',
+                                                                    width: 35,
+                                                                  ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    )
+                                                    .toList(),
+                                              ),
+                                            ],
+                                          ),
+                                            
+                                          Gap(30),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "\$${item.price ?? 0}",
+                                                style: AppTextStyle
+                                                    .font24PrimaryColorBold,
+                                              ),
+                                              Spacer(),
+                                              AppButton(
+                                                icon: Icon(
+                                                  Icons.remove_circle_outline,
+                                                  color: AppColors.darkGreenColor,
+                                                ),
+                                                buttonHeight: 50,
+                                                buttonWidth: 120,
+                                                buttonText: "Remove",
+                                                textStyle: AppTextStyle
+                                                    .font14BalackColorBold,
+                                                onPressed: () {
+                                                  context
+                                                      .read<CartCubit>()
+                                                      .deleteFromCart(
+                                                        item.itemId ?? 0,
+                                                      );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        Gap(30),
+                        Row(
+                          
+                          children: [
+                            Column(
+                              children: [
+                                Text("Total Price" , style: AppTextStyle.font24PrimaryColorBold,),
+                                Gap(10),
+                                Text("\$${data.data?.totalPrice ?? 0}" , style: AppTextStyle.font22WhiteColorBold,),
+                              ],
+                            ),
+                            Spacer(),
+                    
+                        AppButton(
+                                                buttonText: "Checkout", 
+                                          
+                                                icon: Icon(
+                        Icons.shopping_cart_checkout_outlined,
+                        color: Colors.black,size: 23,
+                                                ),
+                                                buttonWidth: 200,
+                                                buttonHeight: 50,
+                                                textStyle: AppTextStyle.font17BalackColorBold,
+                                                onPressed: () {
+                                               
+                                                },
+                                              ),
+                          ],
+                        )
+                    
+                    
+                        
+                      ],
+                    ),
+                  ),
                 );
               },
-              cartLoading: () =>
-                  const Center(child: CircularProgressIndicator()),
+              cartLoading: () => const Center(
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
+              ),
               orElse: () => const SizedBox(),
             );
           },

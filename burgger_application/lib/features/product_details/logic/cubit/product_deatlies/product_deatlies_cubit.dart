@@ -7,15 +7,47 @@ class ProductDeatliesCubit extends Cubit<ProductsState> {
   final ProductDetailsRepo productDeatliesRepo;
   List<int> selectedToppings = [];
   List<int> selectedSides = [];
-  void toggleTopping(int topping) {
-    if (selectedToppings.contains(topping)) {
-      selectedToppings.remove(topping);
+  void toggleTopping(int toppingId) {
+    // ❌ الطريقة دي غلط (بتعدل في نفس المكان في الذاكرة)
+    // selectedToppings.add(toppingId);
+
+    // ✅ الطريقة دي صح (بتعمل قائمة جديدة تماماً)
+    final newList = List<int>.from(selectedToppings);
+
+    if (newList.contains(toppingId)) {
+      newList.remove(toppingId);
     } else {
-      selectedToppings.add(topping);
+      newList.add(toppingId);
     }
-  emit(state); // ده كفاية
 
+    selectedToppings = newList; // بنحدث المتغير الأصلي بالنسخة الجديدة
 
+    // 🔥 هنا بنعمل emit لحالة جديدة
+    state.maybeWhen(
+      productDetailsSuccess: (data) {
+        // إرسال الحالة من جديد بيخلي context.watch() تحس بالتغيير
+        emit(ProductsState.productDetailsSuccess(data));
+      },
+      orElse: () {},
+    );
+  }
+   void sideOptionToggle(int sideOptionId) {
+    final newList = List<int>.from(selectedSides);
+
+    if (newList.contains(sideOptionId)) {
+      newList.remove(sideOptionId);
+    } else {
+      newList.add(sideOptionId);
+    }
+
+    selectedSides = newList;
+
+    state.maybeWhen(
+      productDetailsSuccess: (data) {
+        emit(ProductsState.productDetailsSuccess(data));
+      },
+      orElse: () {},
+    );
   }
 
   void clearSelections() {

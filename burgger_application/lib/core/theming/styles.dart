@@ -10,17 +10,23 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.regular,
     color: AppColors.whitelightColor,
   );
-    static TextStyle font20whitelightColorBold = GoogleFonts.plusJakartaSans(
+  static TextStyle font20whitelightColorBold = GoogleFonts.plusJakartaSans(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.bold,
     color: AppColors.whitelightColor,
   );
-    static TextStyle font30WhitelightColorExtraBold = GoogleFonts.plusJakartaSans(
+
+  static TextStyle font24PrimaryColorBold = GoogleFonts.plusJakartaSans(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primaryColor,
+  );
+
+  static TextStyle font30WhitelightColorExtraBold = GoogleFonts.plusJakartaSans(
     fontSize: 30.sp,
     fontWeight: FontWeightHelper.extraBold,
     color: AppColors.whitelightColor,
   );
-
 
   static TextStyle font40PrimaryColorExtraBold = GoogleFonts.plusJakartaSans(
     fontSize: 40.sp,
@@ -28,7 +34,7 @@ class AppTextStyle {
     color: AppColors.primaryColor,
   );
 
-static TextStyle font30PrimaryColorExtraBold = GoogleFonts.plusJakartaSans(
+  static TextStyle font30PrimaryColorExtraBold = GoogleFonts.plusJakartaSans(
     fontSize: 30.sp,
     fontWeight: FontWeightHelper.extraBold,
     color: AppColors.primaryColor,
@@ -65,6 +71,11 @@ static TextStyle font30PrimaryColorExtraBold = GoogleFonts.plusJakartaSans(
     fontWeight: FontWeightHelper.bold,
     color: Colors.black,
   );
+  static TextStyle font17BalackColorBold = GoogleFonts.plusJakartaSans(
+    fontSize: 17.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.black,
+  );
 
   static TextStyle font16PrimaryColorBold = GoogleFonts.plusJakartaSans(
     fontSize: 16.sp,
@@ -97,5 +108,16 @@ static TextStyle font30PrimaryColorExtraBold = GoogleFonts.plusJakartaSans(
     fontSize: 17.sp,
     fontWeight: FontWeightHelper.bold,
     color: AppColors.primaryColor,
+  );
+
+  static TextStyle font14TextColorBold = GoogleFonts.plusJakartaSans(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: AppColors.textColor,
+  );
+  static TextStyle font22WhiteColorBold = GoogleFonts.plusJakartaSans(
+    fontSize: 22.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.white
   );
 }
