@@ -40,7 +40,7 @@ abstract class WebService {
   Future<ProductsModel> getProducts();
 
   // Get Product by id
-  @GET(ApiConstants.productsEndpoint + "/{id}")
+  @GET("${ApiConstants.productsEndpoint}/{id}")
   Future<ProductData> getProductById(@Path("id") int id);
 
   // Product Deatlies (Toppings)
@@ -57,7 +57,7 @@ abstract class WebService {
     @Body() CartRequestModel cartRequestModel,
   );
 
-  // Cart Screen
+  // Get Cart Data
   @GET(ApiConstants.cartdata)
   Future<CartResponseModel> getCart();
 

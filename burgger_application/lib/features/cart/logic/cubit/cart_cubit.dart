@@ -43,4 +43,21 @@ class CartCubit extends Cubit<CartState> {
     },
   );
 }
+
+  void deleteFromCart(int cartId) async {
+    emit(const CartState.cartLoading());
+
+    final response = await cartRepo.deleteFromCart(cartId);
+
+    response.when(
+      success: (_) {
+        getCart(); // 🔥 إعادة جلب بيانات الكارت بعد الحذف
+      },
+      failure: (error) {
+        emit(CartState.cartError(
+          error: error.apiErrorModel.message ?? '',
+        ));
+      },
+    );
+  }
 }

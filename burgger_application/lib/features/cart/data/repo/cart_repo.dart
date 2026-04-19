@@ -22,11 +22,21 @@ class CartRepo {
   }
 
   Future<ApiResult<CartResponseModel>> getCart() async {
-  try {
-    final response = await webService.getCart();
-    return ApiResult.success(response);
-  } catch (error) {
-    return ApiResult.failure(ErrorHandler.handle(error));
+    try {
+      final response = await webService.getCart();
+      return ApiResult.success(response);
+    } catch (error) {
+      return ApiResult.failure(ErrorHandler.handle(error));
+    }
   }
-}
+
+  // delete cart
+  Future<ApiResult<void>> deleteFromCart(int cartId) async {
+    try {
+      await webService.deleteFromCart(cartId);
+      return ApiResult.success(null);
+    } catch (error) {
+      return ApiResult.failure(ErrorHandler.handle(error));
+    }
+  }
 }
