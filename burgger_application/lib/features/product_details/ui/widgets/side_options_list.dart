@@ -16,6 +16,9 @@ class SideOptionsList extends StatelessWidget {
     return BlocBuilder<SideOptionsCubit, SideOptionsState>(
       builder: (context, state) {
         return state.maybeWhen(
+          loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primaryColor),
+          ),
           orElse: () {
             return const SizedBox.shrink();
           },

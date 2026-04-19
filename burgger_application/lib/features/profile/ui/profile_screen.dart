@@ -1,3 +1,4 @@
+import 'package:burgger_application/core/shared/app_bar.dart';
 import 'package:burgger_application/core/shared/app_button.dart';
 import 'package:burgger_application/core/shared/app_text_form_field.dart';
 import 'package:burgger_application/core/theming/app_colors.dart';
@@ -18,6 +19,8 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+                appBar: AppBarr( leading: Icon(Icons.arrow_back, color: AppColors.primaryColor,)),
+
         body: MultiBlocListener(
           listeners: [ProfileUpdateBlocListener()],
 

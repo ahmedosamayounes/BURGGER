@@ -21,6 +21,7 @@ import 'package:burgger_application/features/profile/ui/profile_screen.dart';
 import 'package:burgger_application/features/signup/data/repo/signup_repo.dart';
 import 'package:burgger_application/features/signup/logic/cubit/signup_cubit.dart';
 import 'package:burgger_application/features/signup/ui/register_screen.dart';
+import 'package:burgger_application/root.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,9 +58,7 @@ class AppRouter {
               BlocProvider(
                 create: (context) => ProductsCubit(getIt())..getProduct(),
               ),
-                BlocProvider(
-                create: (context) => ProfileCubit(getIt()),
-              ),
+              BlocProvider(create: (context) => ProfileCubit(getIt())),
             ],
             child: HomeScreen(),
           ),
@@ -108,14 +107,13 @@ class AppRouter {
               BlocProvider(
                 create: (context) => ProfileCubit(getIt())..getProfileData(),
               ),
-              BlocProvider(
-                create: (context) =>
-                    ProfileUpdateCubit(getIt()),
-              ),
+              BlocProvider(create: (context) => ProfileUpdateCubit(getIt())),
             ],
             child: ProfileScreen(),
           ),
         );
+      case RoutesString.root:
+        return MaterialPageRoute(builder: (_) => RootScreen());
 
       default:
         return MaterialPageRoute(

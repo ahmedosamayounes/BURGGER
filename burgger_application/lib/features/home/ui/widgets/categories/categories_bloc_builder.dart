@@ -17,11 +17,7 @@ class CategoriesBlocBuilder extends StatelessWidget {
           current is CategoriesStateError,
       builder: (context, state) {
         return state.maybeWhen(
-          loading: () {
-            return Center(
-              child: CircularProgressIndicator(color: AppColors.primaryColor),
-            );
-          },
+          
           success: (categoriesData) {
             var data = categoriesData;
             return CategoriesList(categories: data ?? []);

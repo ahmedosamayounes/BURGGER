@@ -1,3 +1,4 @@
+import 'package:burgger_application/core/shared/app_bar.dart';
 import 'package:burgger_application/core/shared/app_button.dart';
 import 'package:burgger_application/core/shared/app_logo.dart';
 import 'package:burgger_application/core/theming/app_colors.dart';
@@ -22,26 +23,11 @@ class RegisterScreen extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.backgroundColor,
-          elevation: 0,
-          leadingWidth: 0.0,
-          scrolledUnderElevation: 0.0,
-          leading: SizedBox.shrink(),
-          title: Row(children: [AppLogo(isLowerCaseText: true, sizeText: 24)]),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 32.0),
-              child: CircleAvatar(
-                backgroundColor: AppColors.darkGreenColor,
-                child: Icon(
-                  Icons.arrow_forward_outlined,
-                  size: 16,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
+        appBar: AppBarr(
+          leading: Icon(
+            Icons.arrow_back,
+            color: AppColors.whitelightColor,
+          ),
         ),
         body: SafeArea(
           child: Padding(

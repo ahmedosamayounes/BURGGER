@@ -24,6 +24,9 @@ class _CategoriesListState extends State<CategoriesList> {
             padding: const EdgeInsets.only(right: 12.0),
             child: TextButton.icon(
               onPressed: () {
+                setState(() {
+                  categoiresListIndex = index;
+                });
               },
             
               label: Text(

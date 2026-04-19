@@ -50,7 +50,7 @@ class ProfileUpdateBlocListener extends BlocListener<ProfileUpdateCubit, Profile
                 foregroundColor: Colors.black,
               ),
               onPressed: () {
-                context.pushNamed(RoutesString.home);
+                context.pushNamed(RoutesString.root);
               },
               child: const Text('Continue'),
             ),
