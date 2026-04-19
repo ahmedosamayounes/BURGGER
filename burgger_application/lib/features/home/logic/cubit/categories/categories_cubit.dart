@@ -8,7 +8,6 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   CategoriesCubit(this.categoriesRepo) : super(CategoriesState.initial());
 
   void getCategories() async {
-    emit(const CategoriesState.loading());
 
     final response = await categoriesRepo.getCategories();
     response.when(

@@ -1,4 +1,5 @@
 import 'package:burgger_application/core/routing/routes_string.dart';
+import 'package:burgger_application/core/shared/app_bar.dart';
 import 'package:burgger_application/core/shared/app_button.dart';
 import 'package:burgger_application/core/shared/app_logo.dart';
 import 'package:burgger_application/core/theming/app_colors.dart';
@@ -24,22 +25,7 @@ class ProductDeatlies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundColor,
-        elevation: 0,
-        scrolledUnderElevation: 0.0,
-        leading: Icon(Icons.arrow_back, color: AppColors.primaryColor),
-        title: Row(children: [AppLogo(isLowerCaseText: true, sizeText: 24)]),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 32.0),
-            child: CircleAvatar(
-              backgroundColor: AppColors.darkGreenColor,
-              child: Icon(Icons.person, size: 16, color: Colors.white),
-            ),
-          ),
-        ],
-      ),
+        appBar: AppBarr( leading: Icon(Icons.arrow_back, color: AppColors.primaryColor,)),
 
       body: SafeArea(
         child: SingleChildScrollView(

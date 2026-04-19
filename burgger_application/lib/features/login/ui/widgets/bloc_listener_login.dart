@@ -28,7 +28,7 @@ class BlocListenerLogin extends StatelessWidget {
           },
           success: (loginResponse) {
             context.pop();
-            context.pushNamed(RoutesString.home);
+            context.pushNamed(RoutesString.root);
           },
           error: (error) {
             setupErrorState(context, error);

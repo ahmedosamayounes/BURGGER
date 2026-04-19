@@ -5,6 +5,5 @@ class RoutesString {
   static const String productDetail = '/product_detail_screen';
   static const String cart = '/cart_screen';
   static const String profile = '/profile_screen';
-
-  
+  static const String root = '/root_screen';
 }

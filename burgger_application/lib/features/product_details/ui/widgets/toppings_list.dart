@@ -19,6 +19,9 @@ class ToppingsList extends StatelessWidget {
           orElse: () {
             return const SizedBox.shrink();
           },
+          loading: () => const Center(
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
+              ),
           success: (toppingsList) {
             return SizedBox(
               height: 140,
