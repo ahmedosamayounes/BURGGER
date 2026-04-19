@@ -69,4 +69,5 @@ abstract class WebService {
   Future<ProfileResponseModel> updateProfileData(
     @Body() ProfileRequestModel profileRequestModel,
   );
+  
 }
