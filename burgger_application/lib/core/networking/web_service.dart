@@ -7,6 +7,8 @@ import 'package:burgger_application/features/home/data/models/products/products_
 import 'package:burgger_application/features/login/data/models/login_reqeust_model.dart';
 import 'package:burgger_application/features/login/data/models/login_response_model.dart';
 import 'package:burgger_application/features/product_details/data/models/product_option/product_option_model.dart';
+import 'package:burgger_application/features/profile/data/models/profile_request_model.dart';
+import 'package:burgger_application/features/profile/data/models/profile_response_model.dart';
 import 'package:burgger_application/features/signup/data/models/signup_request_model.dart';
 import 'package:burgger_application/features/signup/data/models/signup_response_model.dart';
 import 'package:dio/dio.dart';
