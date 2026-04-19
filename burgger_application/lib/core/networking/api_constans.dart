@@ -7,6 +7,8 @@ class ApiConstants {
   static const String toppingsEndpoint = 'toppings';
   static const String productsByIdEndpoint = 'products/';
   static const String sideOptionsEndpoint = 'side-options';
+    static const String profileEndPoint = 'profile';
+    static const String profileUpdate = 'update-profile';
   static const String cartEndpoint = 'cart/add';
   static const String cartdata = 'cart';
   static const String deleteItemFromCart = 'cart/remove';
