@@ -27,7 +27,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final userCubit = context.watch<ProfileCubit>().state; // ينفع جداً
+    
     return Scaffold(
       appBar: AppBarr(iconAction: Icon(CupertinoIcons.cart_fill , color: Colors.white, size: 18,), onTap: () => context.pushNamed(RoutesString.cart)),
       body: SafeArea(

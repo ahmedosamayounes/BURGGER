@@ -3,6 +3,7 @@ import 'package:burgger_application/core/routing/routes_string.dart';
 import 'package:burgger_application/core/shared/app_logo.dart';
 import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarr extends StatelessWidget implements PreferredSizeWidget {
   const AppBarr({super.key, this.iconAction, this.onTap, this.leading});
@@ -20,7 +21,7 @@ class AppBarr extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 0.0,
       leading: GestureDetector(
         onTap: () => context.pop(),
-        child: leading ?? Icon(Icons.arrow_back, color: AppColors.primaryColor),
+        child: leading ?? Icon(Icons.arrow_back, color: AppColors.primaryColor , size: 14.sp,),
       ),
       title: Row(children: [AppLogo(isLowerCaseText: true, sizeText: 24)]),
 

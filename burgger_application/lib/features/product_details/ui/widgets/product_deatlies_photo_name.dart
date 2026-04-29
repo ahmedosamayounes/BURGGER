@@ -2,6 +2,7 @@ import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/core/theming/styles.dart';
 import 'package:burgger_application/features/home/data/models/products/products_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class ProductDeatliesPhotoName extends StatelessWidget {
@@ -16,8 +17,8 @@ class ProductDeatliesPhotoName extends StatelessWidget {
       children: [
         Center(
           child: SizedBox(
-            width: 300,
-            height: 300,
+            width: 300.w,
+            height: 300.h,
             child: Image.network(
               product.image ?? '',
               errorBuilder: (context, error, stackTrace) {

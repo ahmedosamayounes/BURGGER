@@ -8,6 +8,7 @@ import 'package:burgger_application/features/home/logic/cubit/products/products_
 import 'package:burgger_application/features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class ToppingsAndSideOptionsUi extends StatefulWidget {
@@ -39,8 +40,8 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
         Padding(
           padding: const EdgeInsets.only(right: 20),
           child: Container(
-            width: 110,
-            height: 130,
+            width: 110.w,
+            height: 130.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: AppColors.darkGreenColor,
@@ -63,7 +64,7 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
                     },
                     child: CircleAvatar(
                       backgroundColor: AppColors.whitelightColor,
-                      radius: 12,
+                      radius: 12.h,
                       child: isSelected
                           ? Icon(Icons.check, color: Colors.black)
                           : Icon(Icons.add, color: AppColors.backgroundColor),
@@ -78,13 +79,13 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
           padding: const EdgeInsets.only(right: 20),
           child: Container(
             alignment: Alignment.center,
-            height: 84,
-            width: 110,
+            height: 84.h,
+            width: 110.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.white,
             ),
-            child: Image.network(widget.image, width: 80),
+            child: Image.network(widget.image, width: 80.w),
           ),
         ),
       ],

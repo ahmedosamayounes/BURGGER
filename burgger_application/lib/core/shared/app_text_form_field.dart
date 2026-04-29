@@ -45,9 +45,10 @@ class AppTextFormField extends StatelessWidget {
         ),
         Gap(10.h),
         TextFormField(
-          style: TextStyle(color: Colors.grey[600]),
+          style: TextStyle(color: Colors.grey[600] , fontSize: 14.sp),
           cursorColor: AppColors.hintColor,
           cursorHeight: 20.h,
+          
 
           validator: (value) {
             return validator(value);

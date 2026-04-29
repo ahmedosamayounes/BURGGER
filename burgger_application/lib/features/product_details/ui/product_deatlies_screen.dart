@@ -49,7 +49,7 @@ class ProductDeatlies extends StatelessWidget {
                     return Column(
                       children: [
                         ProductDeatliesPhotoName(product: product),
-                        Gap(20),
+                        Gap(20.h),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -57,7 +57,7 @@ class ProductDeatlies extends StatelessWidget {
                               'Toppings',
                               style: AppTextStyle.font20whitelightColorBold,
                             ),
-                            Gap(12),
+                            Gap(12.h),
 
                             ToppingsList(),
                           ],

@@ -3,6 +3,7 @@ import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/features/home/data/models/products/products_model.dart';
 import 'package:burgger_application/features/product_details/ui/product_deatlies_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
@@ -36,7 +37,7 @@ class ProductsList extends StatelessWidget {
                       );
                     },
             child: Container(
-              width: 185,
+              width: 185.w,
               decoration: BoxDecoration(
                 color: AppColors.backgroundColor2,
             
@@ -49,8 +50,8 @@ class ProductsList extends StatelessWidget {
                   children: [
                     Center(
                       child: SizedBox(
-                        width: 140,
-                        height: 150,
+                        width: 140.w,
+                        height: 150.h,
                         child: Image.network(products[index]!.image ?? ''),
                       ),
                     ),
@@ -59,7 +60,7 @@ class ProductsList extends StatelessWidget {
                       products[index]!.name ?? '',
             
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textColor,
                       ),
@@ -71,14 +72,14 @@ class ProductsList extends StatelessWidget {
                         Icon(
                           Icons.star,
                           color: AppColors.secoundryColor,
-                          size: 12,
+                          size: 12.sp,
                         ),
                         Gap(5),
                         Text(
                           products[index]!.rating ?? '',
                           style: TextStyle(
                             color: AppColors.secoundryColor,
-                            fontSize: 12,
+                            fontSize: 12.sp,
                           ),
                         ),
                       ],
@@ -92,7 +93,7 @@ class ProductsList extends StatelessWidget {
                             Text(
                               '\$${products[index]!.price.toString()}',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.primaryColor,
                               ),

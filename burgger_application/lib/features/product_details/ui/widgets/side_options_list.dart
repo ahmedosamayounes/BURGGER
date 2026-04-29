@@ -6,6 +6,7 @@ import 'package:burgger_application/features/product_details/ui/widgets/toppings
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class SideOptionsList extends StatelessWidget {
@@ -24,7 +25,7 @@ class SideOptionsList extends StatelessWidget {
           },
           success: (sideOptionsList) {
             return SizedBox(
-              height: 140,
+              height: 140.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,

@@ -64,9 +64,10 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
             backgroundColor: AppColors.darkGreenColor,
+            
             prefixIcon: Icon(
               Icons.person_2_outlined,
-              size: 22,
+              size: 18.sp,
               color: AppColors.hintColor,
             ),
           ),
@@ -85,7 +86,7 @@ class _RegisterFormState extends State<RegisterForm> {
             backgroundColor: AppColors.darkGreenColor,
             prefixIcon: Icon(
               Icons.email_outlined,
-              size: 22,
+              size: 18.sp,
               color: AppColors.hintColor,
             ),
           ),
@@ -102,7 +103,11 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
             backgroundColor: AppColors.darkGreenColor,
-            prefixIcon: Icon(Icons.phone, size: 22, color: AppColors.hintColor),
+            prefixIcon: Icon(
+              Icons.phone,
+              size: 18.sp,
+              color: AppColors.hintColor,
+            ),
           ),
           Gap(20.h),
           AppTextFormField(
@@ -117,7 +122,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 });
               },
               child: Icon(
-                isPasswordObscureText ? Icons.visibility_off : Icons.visibility,
+                isPasswordObscureText ? Icons.visibility_off : Icons.visibility, size: 18.sp,
               ),
             ),
 
@@ -127,7 +132,11 @@ class _RegisterFormState extends State<RegisterForm> {
               }
             },
             backgroundColor: AppColors.darkGreenColor,
-            prefixIcon: Icon(Icons.lock, size: 22, color: AppColors.hintColor),
+            prefixIcon: Icon(
+              Icons.lock,
+              size: 18.sp,
+              color: AppColors.hintColor,
+            ),
           ),
           Gap(24.h),
           PasswordValidations(

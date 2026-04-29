@@ -34,7 +34,7 @@ class AppButton extends StatelessWidget {
     return TextButton.icon(
       onPressed: onPressed,
       label: Text(buttonText, style: textStyle),
-      icon: icon ?? Icon(Icons.arrow_forward, color: Colors.black),
+      icon: icon ?? Icon(Icons.arrow_forward, color: Colors.black , size: 16.sp,),
 
       style: ButtonStyle(
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(

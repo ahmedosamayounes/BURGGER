@@ -1,6 +1,7 @@
 import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/features/home/data/models/categories/categories_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesList extends StatefulWidget {
   final List<CategoryData?> categories;
@@ -16,12 +17,12 @@ class _CategoriesListState extends State<CategoriesList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 55,
+      height: 50.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(right: 12.0),
+            padding:  EdgeInsets.only(right: 12.0.w),
             child: TextButton.icon(
               onPressed: () {
                 setState(() {
@@ -32,14 +33,14 @@ class _CategoriesListState extends State<CategoriesList> {
               label: Text(
                 widget.categories[index]?.name ?? '' ,
 
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16.sp),
               ),
             
               style: TextButton.styleFrom(
                 backgroundColor: categoiresListIndex == index ? AppColors.categorieColor : AppColors.categorieColor2,
                 foregroundColor: AppColors.lightGreenColor,
             
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 1),
+                padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 1.h),
             
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
