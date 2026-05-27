@@ -1,8 +1,9 @@
-import 'package:burgger_application/core/routing/app_router.dart';
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
+import 'package:burgger_application/core/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/routing/app_router.dart';
+import 'core/routing/routes_string.dart';
+import 'core/theming/app_colors.dart';
 
 class BurggerApp extends StatelessWidget {
   final AppRouter appRouter;
@@ -19,7 +20,7 @@ class BurggerApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'BurggerApp',
         theme: ThemeData(scaffoldBackgroundColor: AppColors.backgroundColor),
-        initialRoute: RoutesString.login,
+        initialRoute: isLoggedInUser ? RoutesString.root : RoutesString.login,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

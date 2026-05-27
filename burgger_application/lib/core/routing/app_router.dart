@@ -1,28 +1,24 @@
-import 'package:burgger_application/core/di/depnedency_injaction.dart';
-import 'package:burgger_application/core/networking/web_service.dart';
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/features/cart/logic/cubit/cart_cubit.dart';
-import 'package:burgger_application/features/cart/ui/cart_screen.dart';
-import 'package:burgger_application/features/home/data/models/products/products_model.dart';
-import 'package:burgger_application/features/home/logic/cubit/categories/categories_cubit.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
-import 'package:burgger_application/features/home/logic/cubit/products/products_cubit.dart';
-import 'package:burgger_application/features/home/ui/home_screen.dart';
+import '../di/depnedency_injaction.dart';
+import 'routes_string.dart';
+import '../../features/cart/logic/cubit/cart_cubit.dart';
+import '../../features/cart/ui/cart_screen.dart';
+import '../../features/home/data/models/products/products_model.dart';
+import '../../features/home/logic/cubit/categories/categories_cubit.dart';
+import '../../features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
+import '../../features/home/logic/cubit/products/products_cubit.dart';
+import '../../features/home/ui/home_screen.dart';
 
-import 'package:burgger_application/features/product_details/logic/cubit/side_options/side_options_cubit.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/toppings/toppings_cubit.dart';
-import 'package:burgger_application/features/product_details/ui/product_deatlies_screen.dart';
-import 'package:burgger_application/features/login/data/repo/login_repo.dart';
-import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
-import 'package:burgger_application/features/login/ui/login_screen.dart';
-import 'package:burgger_application/features/profile/logic/cubit_get_data/profile_cubit.dart';
-import 'package:burgger_application/features/profile/logic/cubit_update_data/profile_update_cubit.dart';
-import 'package:burgger_application/features/profile/ui/profile_screen.dart';
-import 'package:burgger_application/features/signup/data/repo/signup_repo.dart';
-import 'package:burgger_application/features/signup/logic/cubit/signup_cubit.dart';
-import 'package:burgger_application/features/signup/ui/register_screen.dart';
-import 'package:burgger_application/root.dart';
-import 'package:dio/dio.dart';
+import '../../features/product_details/logic/cubit/side_options/side_options_cubit.dart';
+import '../../features/product_details/logic/cubit/toppings/toppings_cubit.dart';
+import '../../features/product_details/ui/product_deatlies_screen.dart';
+import '../../features/login/logic/cubit/login_cubit.dart';
+import '../../features/login/ui/login_screen.dart';
+import '../../features/profile/logic/cubit_get_data/profile_cubit.dart';
+import '../../features/profile/logic/cubit_update_data/profile_update_cubit.dart';
+import '../../features/profile/ui/profile_screen.dart';
+import '../../features/signup/logic/cubit/signup_cubit.dart';
+import '../../features/signup/ui/register_screen.dart';
+import '../../root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -93,8 +89,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             body: BlocProvider(
-              create: (context) => CartCubit(getIt()),
-
+              //    create: (context) => CartCubit(getIt()),
+              create: (context) => getIt<CartCubit>(),
               child: CartScreen(),
             ),
           ),

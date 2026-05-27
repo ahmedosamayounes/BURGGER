@@ -1,7 +1,6 @@
-import 'package:burgger_application/core/helpers/extensions.dart';
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/shared/app_logo.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
+import '../helpers/extensions.dart';
+import 'app_logo.dart';
+import '../theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,7 +29,7 @@ class AppBarr extends StatelessWidget implements PreferredSizeWidget {
           GestureDetector(
             onTap: onTap,
             child: Padding(
-              padding: const EdgeInsets.only(right: 32.0),
+              padding:  EdgeInsets.only(right: 32.0.r),
               child: CircleAvatar(
                 backgroundColor: AppColors.darkGreenColor,
                 child: iconAction ?? SizedBox.shrink(),

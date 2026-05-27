@@ -1,7 +1,6 @@
 
-import 'package:burgger_application/core/networking/api_error_handler.dart';
-import 'package:burgger_application/features/home/data/models/products/products_model.dart';
-import 'package:flutter/src/widgets/basic.dart';
+import '../../../../../core/networking/api_error_handler.dart';
+import '../../../data/models/products/products_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'products_state.freezed.dart';

@@ -1,8 +1,9 @@
 
 
-import 'package:burgger_application/core/networking/api_error_handler.dart';
-import 'package:burgger_application/features/product_details/data/models/product_option/product_option_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../../core/networking/api_error_handler.dart';
+import '../../../data/models/product_option/product_option_model.dart';
 
 part 'side_options_state.freezed.dart';
 @freezed

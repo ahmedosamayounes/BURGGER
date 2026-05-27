@@ -1,8 +1,9 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../core/theming/styles.dart';
+import '../../../../core/theming/app_colors.dart';
 
 class PasswordValidations extends StatelessWidget {
   final bool hasLowerCase;
@@ -49,7 +50,7 @@ class PasswordValidations extends StatelessWidget {
           style: AppTextStyle.font16TextColorMedium.copyWith(
             decoration: hasValidated ? TextDecoration.lineThrough : null,
             decorationColor: Colors.black,
-            decorationThickness: 2,
+            decorationThickness: 2.sp,
             color: hasValidated
                 ? AppColors.hintColor
                 : Colors.white,

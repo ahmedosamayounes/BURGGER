@@ -1,12 +1,13 @@
-import 'package:burgger_application/core/helpers/app_regex.dart';
-import 'package:burgger_application/core/shared/app_text_form_field.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
-import 'package:burgger_application/features/login/ui/widgets/paswword_validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../core/helpers/app_regex.dart';
+import '../../../../core/shared/app_text_form_field.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../logic/cubit/login_cubit.dart';
+import 'paswword_validations.dart';
 
 class EmailAndPasswordForm extends StatefulWidget {
   const EmailAndPasswordForm({super.key});
@@ -72,7 +73,7 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
               return null;
             },
           ),
-          Gap(20.h),
+          Gap(20),
           AppTextFormField(
             text: 'PASSWORD',
             prefixIcon: Icon(Icons.lock_outline , size: 20.sp, color: AppColors.hintColor,),
@@ -98,7 +99,7 @@ class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
               }
             },
           ),
-          Gap(8.h),
+          Gap(8),
           Align(
             alignment: Alignment.centerRight,
             child: Text(

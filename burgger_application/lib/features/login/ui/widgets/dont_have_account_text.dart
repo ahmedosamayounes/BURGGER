@@ -1,8 +1,8 @@
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/routing/routes_string.dart';
+import '../../../../core/theming/styles.dart';
 
 
 class DontHaveAccountText extends StatelessWidget {

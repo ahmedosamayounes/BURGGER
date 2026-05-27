@@ -1,11 +1,12 @@
-import 'package:burgger_application/core/helpers/extensions.dart';
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/signup/logic/cubit/sign_up_state.dart';
-import 'package:burgger_application/features/signup/logic/cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/helpers/extensions.dart';
+import '../../../../core/routing/routes_string.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
+import '../../logic/cubit/sign_up_state.dart';
+import '../../logic/cubit/signup_cubit.dart';
 
 class SignupBlocListener extends StatelessWidget {
   const SignupBlocListener({super.key});

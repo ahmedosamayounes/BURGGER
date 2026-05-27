@@ -1,11 +1,14 @@
-import 'package:burgger_application/core/routing/app_router.dart';
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
+import 'package:burgger_application/core/theming/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'core/routing/app_router.dart';
+import 'core/routing/routes_string.dart';
+import 'core/theming/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RootScreen extends StatefulWidget {
-  RootScreen({super.key});
+  const RootScreen({super.key});
 
   @override
   State<RootScreen> createState() => _RootScreenState();
@@ -28,7 +31,9 @@ class _RootScreenState extends State<RootScreen> {
     screens = [
       _buildScreenFromRoute(RoutesString.home),
       _buildScreenFromRoute(RoutesString.cart),
-      _buildScreenFromRoute(RoutesString.profile),
+      _buildScreenFromRoute(RoutesString.orderHistory),
+            _buildScreenFromRoute(RoutesString.profile),
+
     ];
   }
 
@@ -46,28 +51,38 @@ class _RootScreenState extends State<RootScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         controller: controller,
         children: screens, // كدة كل شاشة دخلت بـ الـ Providers بتاعتها
       ),
       bottomNavigationBar: Container(
-        margin: EdgeInsets.all(20),
-        padding: const EdgeInsets.symmetric(vertical: 5),
+        height: 90.h,
         decoration: BoxDecoration(
-          color: AppColors.whitelightColor,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20.r),
         ),
         child: BottomNavigationBar(
+
           currentIndex: currentIndex,
+          selectedFontSize: 12.sp,    
+  unselectedFontSize: 11.sp,
+  iconSize: 24.sp,
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: AppColors.backgroundColor,
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.darkGreenColor,
+          selectedItemColor: AppColors.primaryColor,
           unselectedItemColor: Colors.grey.shade500,
+          selectedLabelStyle: AppTextStyle.font14WhiteColorExtraBold,
+          unselectedLabelStyle: AppTextStyle.font14WhiteColorMedium,
+    
           onTap: (index) {
             setState(() {
               currentIndex = index;
             });
-            controller.jumpToPage(index);
+            controller.animateToPage(
+    index,
+    duration: const Duration(milliseconds: 300),
+    curve: Curves.easeInOut,
+  );
           },
 
           items: [
@@ -80,7 +95,12 @@ class _RootScreenState extends State<RootScreen> {
               icon: Icon(CupertinoIcons.cart),
               label: 'Cart',
             ),
+      
             BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.chart_pie),
+              label: 'Order Hisotry ',
+            ),
+                BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.profile_circled),
               label: 'Profile',
             ),

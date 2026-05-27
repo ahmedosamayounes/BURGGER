@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/features/product_details/data/repo/side_options_repo.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/side_options/side_options_state.dart';
+
+import '../../../../../core/networking/api_result.dart';
+import '../../../data/repo/side_options_repo.dart';
+import 'side_options_state.dart';
 
 class SideOptionsCubit extends Cubit<SideOptionsState> {
   final SideOptionsRepo sideOptionsRepo;

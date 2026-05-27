@@ -1,12 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/features/signup/data/models/signup_request_model.dart';
-import 'package:burgger_application/features/signup/data/models/signup_response_model.dart';
-import 'package:burgger_application/features/signup/data/repo/signup_repo.dart';
-import 'package:burgger_application/features/signup/logic/cubit/sign_up_state.dart';
-import 'package:flutter/foundation.dart';
+import '../../../../core/networking/api_result.dart';
+import '../../data/models/signup_request_model.dart';
+import '../../data/repo/signup_repo.dart';
+import 'sign_up_state.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 class SignupCubit extends Cubit<SignUpState> {
   final SignupRepo signupRepo;
@@ -30,12 +27,14 @@ class SignupCubit extends Cubit<SignUpState> {
         password: passwordController.text,
       ),
     );
-
+    if (isClosed) return;
     response.when(
       success: (signupResponseModel) {
+        if (isClosed) return;
         emit(SignUpState.signupSuccess(signupResponseModel));
       },
       failure: (error) {
+        if (isClosed) return;
         emit(SignUpState.signupError(error: error.apiErrorModel.message ?? ''));
       },
     );

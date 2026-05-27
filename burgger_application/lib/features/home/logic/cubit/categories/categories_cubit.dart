@@ -1,14 +1,25 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/features/home/data/repo/categories/categories_repo.dart';
-import 'package:burgger_application/features/home/logic/cubit/categories/categories_state.dart';
+import 'package:burgger_application/core/helpers/shared_pref_helper.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../../core/networking/api_result.dart';
+import '../../../data/repo/categories/categories_repo.dart';
+import 'categories_state.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
   final CategoriesRepo categoriesRepo;
   CategoriesCubit(this.categoriesRepo) : super(CategoriesState.initial());
+  String? userName;
+  Future<void> getUserName() async {
+    userName = await SharedPrefHelper.getString('userName');
+    debugPrint("Retrieved UserName: $userName");
+
+    // بنعمل emit لحالة الـ initial أو حالة مخصصة عشان الـ UI يعمل Rebuild بالاسم الجديد
+    emit(CategoriesState.initial());
+  }
 
   void getCategories() async {
-
+    emit(CategoriesState.loading());
     final response = await categoriesRepo.getCategories();
     response.when(
       success: (categoriesModel) {

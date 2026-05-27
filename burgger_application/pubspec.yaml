@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bloc: ^9.2.1
   build_runner: ^2.4.6
   cupertino_icons: ^1.0.8
   dio: ^5.9.1
@@ -36,9 +37,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_credit_card: ^4.1.0
   flutter_native_splash: ^2.4.7
   flutter_screenutil: ^5.9.3
-  flutter_secure_storage: ^10.0.0
+  flutter_secure_storage: ^10.3.1
   flutter_svg: ^2.2.4
   freezed: ^3.2.5
   freezed_annotation: ^3.1.0
@@ -63,14 +65,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

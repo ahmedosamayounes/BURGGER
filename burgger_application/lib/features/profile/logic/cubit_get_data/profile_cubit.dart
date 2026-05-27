@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/features/profile/data/models/profile_response_model.dart';
-import 'package:burgger_application/features/profile/data/repo/profile_repo.dart';
-import 'package:burgger_application/features/profile/logic/cubit_get_data/profile_state.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../core/networking/api_result.dart';
+import '../../data/repo/profile_repo.dart';
+import 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepo profileRepo;
@@ -13,12 +12,21 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(ProfileState.profileLoading());
 
     final response = await profileRepo.getProfileData();
+
+    if (isClosed) return;
     response.when(
-      success: (responseModel) =>
-          emit(ProfileState.profileSuccess(responseModel)),
-      failure: (error) => emit(
-        ProfileState.profileError(error: error.apiErrorModel.message ?? ''),
-      ),
+      success: (responseModel) {
+        if (isClosed) return;
+        emit(ProfileState.profileSuccess(responseModel));
+      },
+      failure: (error) {
+        if (isClosed) return;
+        emit(
+          ProfileState.profileError(error: error.apiErrorModel.message ?? ''),
+        );
+      },
     );
   }
+
+
 }

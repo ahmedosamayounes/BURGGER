@@ -1,13 +1,12 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/product_details/data/models/product_option/product_option_model.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/toppings/toppings_cubit.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/toppings/toppings_state.dart';
-import 'package:burgger_application/features/product_details/ui/widgets/toppings_and_side_options_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../logic/cubit/toppings/toppings_cubit.dart';
+import '../../logic/cubit/toppings/toppings_state.dart';
+import 'toppings_and_side_options_ui.dart';
 
 class ToppingsList extends StatelessWidget {
   const ToppingsList({super.key});
@@ -20,9 +19,28 @@ class ToppingsList extends StatelessWidget {
           orElse: () {
             return const SizedBox.shrink();
           },
-          loading: () => const Center(
-                child: CircularProgressIndicator(color: AppColors.primaryColor),
+          error: (errorHandler) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.error_outline, color: Colors.red, size: 50),
+
+                  const SizedBox(height: 10),
+
+                  Text(
+                    errorHandler.apiErrorModel.message ??
+                        'Something went wrong',
+                    style: AppTextStyle.font16ErrorColorBold,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
+            );
+          },
+          loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primaryColor),
+          ),
           success: (toppingsList) {
             return SizedBox(
               height: 140.h,
@@ -35,6 +53,7 @@ class ToppingsList extends StatelessWidget {
                     id: toppingsList[index]!.id?.toInt() ?? 0,
                     name: toppingsList[index]!.name ?? '',
                     image: toppingsList[index]!.image ?? '',
+                    isTopping: true,
                   );
                 },
               ),

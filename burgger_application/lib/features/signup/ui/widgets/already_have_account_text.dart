@@ -1,5 +1,5 @@
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/theming/styles.dart';
+import '../../../../core/routing/routes_string.dart';
+import '../../../../core/theming/styles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 

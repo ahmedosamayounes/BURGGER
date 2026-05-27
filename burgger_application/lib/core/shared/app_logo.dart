@@ -1,6 +1,5 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/font_weight_helper.dart';
-import 'package:burgger_application/core/theming/styles.dart';
+import '../theming/app_colors.dart';
+import '../theming/font_weight_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -1,9 +1,10 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/home/data/models/products/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../home/data/models/products/products_model.dart';
 
 class ProductDeatliesPhotoName extends StatelessWidget {
   final ProductData product;
@@ -54,7 +55,7 @@ class ProductDeatliesPhotoName extends StatelessWidget {
                 Gap(5),
                 Row(
                   children: [
-                    Icon(Icons.star, color: AppColors.secoundryColor, size: 16),
+                    Icon(Icons.star, color: AppColors.secoundryColor, size: 16.sp),
                     Gap(2),
                     Text(
                       product.rating ?? '0',

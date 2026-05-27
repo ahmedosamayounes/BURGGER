@@ -1,8 +1,9 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../theming/app_colors.dart';
+import '../theming/styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   final String? text;
@@ -40,7 +41,7 @@ class AppTextFormField extends StatelessWidget {
         Text(
           text ?? '',
           style: AppTextStyle.font14TextColorMedium.copyWith(
-            letterSpacing: 1.5,
+            letterSpacing: 1.5.w,
           ),
         ),
         Gap(10.h),
@@ -68,7 +69,7 @@ class AppTextFormField extends StatelessWidget {
             isDense: true,
             contentPadding: EdgeInsets.symmetric(
               horizontal: 40.w,
-              vertical: 20.h,
+              vertical: 15.h,
             ),
             enabledBorder:
                 enabledBorder ??
@@ -77,11 +78,11 @@ class AppTextFormField extends StatelessWidget {
                 focusedBorder ??
                 OutlineInputBorder(borderRadius: BorderRadius.circular(35.r)),
             errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red, width: 1.3),
+              borderSide:  BorderSide(color: Colors.red, width: 1.3.w),
               borderRadius: BorderRadius.circular(16.r),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red, width: 1.3),
+              borderSide:  BorderSide(color: Colors.red, width: 1.3.w),
               borderRadius: BorderRadius.circular(16.r),
             ),
           ),

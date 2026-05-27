@@ -1,4 +1,4 @@
-import 'package:burgger_application/features/cart/data/models/cart_response_model.dart';
+import '../../data/models/cart_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_state.freezed.dart';

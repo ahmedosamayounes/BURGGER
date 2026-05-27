@@ -1,5 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'login_response_model.g.dart';
 @JsonSerializable()
 class LoginResponseModel {

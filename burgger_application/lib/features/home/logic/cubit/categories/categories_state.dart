@@ -1,6 +1,7 @@
-import 'package:burgger_application/core/networking/api_error_handler.dart';
-import 'package:burgger_application/features/home/data/models/categories/categories_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../../core/networking/api_error_handler.dart';
+import '../../../data/models/categories/categories_model.dart';
 
 part 'categories_state.freezed.dart';
 

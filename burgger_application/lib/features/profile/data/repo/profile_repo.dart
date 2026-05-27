@@ -1,8 +1,8 @@
-import 'package:burgger_application/core/networking/api_error_handler.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/core/networking/web_service.dart';
-import 'package:burgger_application/features/profile/data/models/profile_request_model.dart';
-import 'package:burgger_application/features/profile/data/models/profile_response_model.dart';
+import '../../../../core/networking/api_error_handler.dart';
+import '../../../../core/networking/api_result.dart';
+import '../../../../core/networking/web_service.dart';
+import '../models/profile_request_model.dart';
+import '../models/profile_response_model.dart';
 
 class ProfileRepo {
   final WebService webService;

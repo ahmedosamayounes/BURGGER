@@ -1,19 +1,20 @@
-import 'package:burgger_application/core/networking/api_constans.dart';
-import 'package:burgger_application/features/cart/data/models/cart_request_model.dart';
-import 'package:burgger_application/features/cart/data/models/add_cart_response_model.dart';
-import 'package:burgger_application/features/cart/data/models/cart_response_model.dart';
-import 'package:burgger_application/features/home/data/models/categories/categories_model.dart';
-import 'package:burgger_application/features/home/data/models/products/products_model.dart';
-import 'package:burgger_application/features/login/data/models/login_reqeust_model.dart';
-import 'package:burgger_application/features/login/data/models/login_response_model.dart';
-import 'package:burgger_application/features/product_details/data/models/product_option/product_option_model.dart';
-import 'package:burgger_application/features/profile/data/models/profile_request_model.dart';
-import 'package:burgger_application/features/profile/data/models/profile_response_model.dart';
-import 'package:burgger_application/features/signup/data/models/signup_request_model.dart';
-import 'package:burgger_application/features/signup/data/models/signup_response_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
+
+import '../../features/cart/data/models/add_cart_response_model.dart';
+import '../../features/cart/data/models/cart_request_model.dart';
+import '../../features/cart/data/models/cart_response_model.dart';
+import '../../features/home/data/models/categories/categories_model.dart';
+import '../../features/home/data/models/products/products_model.dart';
+import '../../features/login/data/models/login_reqeust_model.dart';
+import '../../features/login/data/models/login_response_model.dart';
+import '../../features/product_details/data/models/product_option/product_option_model.dart';
+import '../../features/profile/data/models/profile_request_model.dart';
+import '../../features/profile/data/models/profile_response_model.dart';
+import '../../features/signup/data/models/signup_request_model.dart';
+import '../../features/signup/data/models/signup_response_model.dart';
+import 'api_constans.dart';
 
 part 'web_service.g.dart';
 

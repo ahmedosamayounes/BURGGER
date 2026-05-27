@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/features/profile/data/models/profile_request_model.dart';
-import 'package:burgger_application/features/profile/data/repo/profile_repo.dart';
-import 'package:burgger_application/features/profile/logic/cubit_update_data/profile_update_state.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../core/networking/api_result.dart';
+import '../../data/models/profile_request_model.dart';
+import '../../data/repo/profile_repo.dart';
+import 'profile_update_state.dart';
 
 class ProfileUpdateCubit extends Cubit<ProfileUpdateState> {
   final ProfileRepo profileRepo;

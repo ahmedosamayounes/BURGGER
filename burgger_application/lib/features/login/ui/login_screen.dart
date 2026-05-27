@@ -1,17 +1,15 @@
-import 'package:burgger_application/core/shared/app_button.dart';
-import 'package:burgger_application/core/shared/app_text_form_field.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/login/logic/cubit/login_cubit.dart';
-import 'package:burgger_application/features/login/logic/cubit/login_state.dart';
-import 'package:burgger_application/features/login/ui/widgets/bloc_listener_login.dart';
-import 'package:burgger_application/features/login/ui/widgets/brand_header.dart';
-import 'package:burgger_application/features/login/ui/widgets/dont_have_account_text.dart';
-import 'package:burgger_application/features/login/ui/widgets/email_and_password_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../../core/shared/app_button.dart';
+import '../../../core/theming/styles.dart';
+import '../logic/cubit/login_cubit.dart';
+import 'widgets/bloc_listener_login.dart';
+import 'widgets/brand_header.dart';
+import 'widgets/dont_have_account_text.dart';
+import 'widgets/email_and_password_form.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -30,10 +28,10 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 children: [
                   BrandHeader(),
-                  Gap(60.h),
+                  Gap(60),
 
                   EmailAndPasswordForm(),
-                  Gap(30.h),
+                  Gap(30),
                   AppButton(
                     icon: SizedBox.shrink(),
                     buttonText: 'Log in',

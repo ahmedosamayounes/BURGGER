@@ -1,13 +1,11 @@
-import 'package:burgger_application/core/helpers/extensions.dart';
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/shared/app_bar.dart';
-import 'package:burgger_application/core/shared/app_button.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/cart/logic/cubit/cart_cubit.dart';
-import 'package:burgger_application/features/cart/logic/cubit/cart_state.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
-import 'package:flutter/cupertino.dart';
+import 'visa.dart';
+
+import '../../../core/shared/app_bar.dart';
+import '../../../core/shared/app_button.dart';
+import '../../../core/theming/app_colors.dart';
+import '../../../core/theming/styles.dart';
+import '../logic/cubit/cart_cubit.dart';
+import '../logic/cubit/cart_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,8 +29,10 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarr( leading: Icon(Icons.arrow_back, color: AppColors.primaryColor,)),
-        
+        appBar: AppBarr(
+          leading: Icon(Icons.arrow_back, color: AppColors.primaryColor),
+        ),
+
         body: BlocBuilder<CartCubit, CartState>(
           builder: (context, state) {
             return state.maybeWhen(
@@ -40,13 +40,25 @@ class _CartScreenState extends State<CartScreen> {
                 final items = data.data?.items ?? [];
 
                 if (items.isEmpty) {
-                  return  Center(child: Text("Cart is empty" ,style: AppTextStyle.font16PrimaryColorBold,));
+                  return Center(
+                    child: Text(
+                      "Cart is empty",
+                      style: AppTextStyle.font16PrimaryColorBold,
+                    ),
+                  );
                 }
+                num calculatedTotalPrice = 0;
 
+                for (dynamic item in items) {
+                  final doubleItemPrice =
+                      double.tryParse(item.price?.toString() ?? '0') ?? 0.0;
+
+                  calculatedTotalPrice += doubleItemPrice;
+                }
                 return SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      vertical: 30.h,
+                      vertical: 20.w,
                       horizontal: 20.h,
                     ),
                     child: Column(
@@ -59,15 +71,15 @@ class _CartScreenState extends State<CartScreen> {
                           itemBuilder: (context, index) {
                             final item = items[index];
 
-                            return Card(
-                              color: AppColors.backgroundColor2,
+                            return Padding(
+                              padding: EdgeInsets.all(8.0.r),
                               child: Container(
-                                width: 370,
-                                height: 450,
+                                width: 370.w,
+                                height: 430.h,
                                 decoration: BoxDecoration(
-                                  color: AppColors.backgroundColor2,
+                                  color: Colors.white,
 
-                                  borderRadius: BorderRadius.circular(50),
+                                  borderRadius: BorderRadius.circular(30.r),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,21 +89,22 @@ class _CartScreenState extends State<CartScreen> {
                                     Center(
                                       child: Image.network(
                                         item.image ?? '',
-                                        width: 160,
+                                        width: 160.w,
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 15,
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 15.r,
                                       ),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            item.name ?? '',
-                                            style: AppTextStyle
-                                                .font22WhiteColorBold,
+                                          Center(
+                                            child: Text(
+                                              item.name ?? '',
+                                              style: AppTextStyle.font20RedBold,
+                                            ),
                                           ),
 
                                           Gap(30),
@@ -102,7 +115,7 @@ class _CartScreenState extends State<CartScreen> {
                                               Text(
                                                 "Toppings : ",
                                                 style: AppTextStyle
-                                                    .font14TextColorBold,
+                                                    .font14BalackColorBold,
                                               ),
 
                                               Wrap(
@@ -111,18 +124,19 @@ class _CartScreenState extends State<CartScreen> {
                                                       (t) => Padding(
                                                         padding:
                                                             EdgeInsets.symmetric(
-                                                              horizontal: 8.h,
+                                                              horizontal: 5.r,
                                                             ),
                                                         child: Column(
                                                           children: [
                                                             CircleAvatar(
                                                               backgroundColor:
-                                                                  Colors.white,
+                                                                  AppColors
+                                                                      .whitelightColor,
                                                               child:
                                                                   Image.network(
                                                                     t.image ??
                                                                         '',
-                                                                    width: 35,
+                                                                    width: 35.w,
                                                                   ),
                                                             ),
                                                           ],
@@ -141,7 +155,7 @@ class _CartScreenState extends State<CartScreen> {
                                               Text(
                                                 "Side Optiops:",
                                                 style: AppTextStyle
-                                                    .font14TextColorBold,
+                                                    .font14BalackColorBold,
                                               ),
 
                                               Wrap(
@@ -150,18 +164,19 @@ class _CartScreenState extends State<CartScreen> {
                                                       (t) => Padding(
                                                         padding:
                                                             EdgeInsets.symmetric(
-                                                              horizontal: 5.h,
+                                                              horizontal: 2.r,
                                                             ),
                                                         child: Column(
                                                           children: [
                                                             CircleAvatar(
                                                               backgroundColor:
-                                                                  Colors.white,
+                                                                  AppColors
+                                                                      .whitelightColor,
                                                               child:
                                                                   Image.network(
                                                                     t.image ??
                                                                         '',
-                                                                    width: 35,
+                                                                    width: 35.w,
                                                                   ),
                                                             ),
                                                           ],
@@ -176,10 +191,24 @@ class _CartScreenState extends State<CartScreen> {
                                           Gap(30),
                                           Row(
                                             children: [
-                                              Text(
-                                                "\$${item.price ?? 0}",
-                                                style: AppTextStyle
-                                                    .font24PrimaryColorBold,
+                                              Container(
+                                                width: 100.w,
+                                                height: 50.h,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                        20.r,
+                                                      ),
+                                                  color:
+                                                      AppColors.secoundryColor,
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    "\$${item.price ?? 0}",
+                                                    style: AppTextStyle
+                                                        .font14PriceColorBold,
+                                                  ),
+                                                ),
                                               ),
                                               Spacer(),
                                               AppButton(
@@ -188,8 +217,8 @@ class _CartScreenState extends State<CartScreen> {
                                                   color:
                                                       AppColors.darkGreenColor,
                                                 ),
-                                                buttonHeight: 50,
-                                                buttonWidth: 120,
+                                                buttonHeight: 50.h,
+                                                buttonWidth: 120.w,
                                                 buttonText: "Remove",
                                                 textStyle: AppTextStyle
                                                     .font14BalackColorBold,
@@ -223,25 +252,30 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 Gap(10),
                                 Text(
-                                  "\$${data.data?.totalPrice ?? 0}",
+                                  "\$$calculatedTotalPrice",
                                   style: AppTextStyle.font22WhiteColorBold,
                                 ),
                               ],
                             ),
-                            Spacer(),
-
+                            Gap(32),
                             AppButton(
                               buttonText: "Checkout",
 
                               icon: Icon(
                                 Icons.shopping_cart_checkout_outlined,
                                 color: Colors.black,
-                                size: 23,
+                                size: 23.sp,
                               ),
-                              buttonWidth: 200,
-                              buttonHeight: 50,
+                              buttonWidth: 150.w,
+                              buttonHeight: 50.h,
                               textStyle: AppTextStyle.font17BalackColorBold,
                               onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Visa(),
+                                  ),
+                                );
                               },
                             ),
                           ],
@@ -255,6 +289,24 @@ class _CartScreenState extends State<CartScreen> {
                 child: CircularProgressIndicator(color: AppColors.primaryColor),
               ),
               orElse: () => const SizedBox(),
+              cartError: (e) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.error_outline, color: AppColors.errorColor, size: 50),
+
+                      const SizedBox(height: 10),
+
+                      Text(
+                        e,
+                     style: AppTextStyle.font16ErrorColorBold,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              },
             );
           },
         ),

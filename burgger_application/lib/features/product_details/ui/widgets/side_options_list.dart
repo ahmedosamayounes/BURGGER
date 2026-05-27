@@ -1,13 +1,12 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
 import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/side_options/side_options_cubit.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/side_options/side_options_state.dart';
-import 'package:burgger_application/features/product_details/ui/widgets/toppings_and_side_options_ui.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../logic/cubit/side_options/side_options_cubit.dart';
+import '../../logic/cubit/side_options/side_options_state.dart';
+import 'toppings_and_side_options_ui.dart';
 
 class SideOptionsList extends StatelessWidget {
   const SideOptionsList({super.key});
@@ -36,12 +35,31 @@ class SideOptionsList extends StatelessWidget {
 
                     name: sideOptionsList[index]!.name ?? '',
                     image: sideOptionsList[index]!.image ?? '',
+                    isTopping: false,
                   );
                 },
               ),
             );
           },
-          error: (errorHandler) => const SizedBox.shrink(),
+          error: (errorHandler) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.error_outline, color: Colors.red, size: 50),
+
+                  const SizedBox(height: 10),
+
+                  Text(
+                    errorHandler.apiErrorModel.message ??
+                        'Something went wrong',
+                    style: AppTextStyle.font16ErrorColorBold,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            );
+          },
         );
       },
     );

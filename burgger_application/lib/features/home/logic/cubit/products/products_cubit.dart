@@ -1,12 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/networking/api_error_handler.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/features/home/data/models/products/products_model.dart';
-import 'package:burgger_application/features/home/data/repo/product_details/product_details_repo.dart';
-import 'package:burgger_application/features/home/data/repo/products/products_repo.dart';
-import 'package:burgger_application/features/home/logic/cubit/categories/categories_state.dart';
-import 'package:burgger_application/features/home/logic/cubit/products/products_state.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../../core/networking/api_result.dart';
+import '../../../data/repo/products/products_repo.dart';
+import 'products_state.dart';
 
 class ProductsCubit extends Cubit<ProductsState> {
   final ProductsRepo productsRepo;
@@ -16,8 +12,10 @@ class ProductsCubit extends Cubit<ProductsState> {
     emit(const ProductsState.loading());
 
     final response = await productsRepo.getProducts();
+    if (isClosed) return;
     response.when(
       success: (productsModel) {
+        if (isClosed) return; 
         emit(ProductsState.success(productsModel.data));
       },
       failure: (error) {

@@ -1,5 +1,6 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
+// ignore_for_file: deprecated_member_use
+
+import '../theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,9 +13,10 @@ class AppButton extends StatelessWidget {
   final double? buttonHeight;
   final String buttonText;
   final TextStyle textStyle;
-  final VoidCallback
-  onPressed; // to handle button press events , function that takes no arguments and returns void
+  final VoidCallback onPressed; 
   final Widget? icon;
+  final bool isLoading; // 👈 1. ضفنا المتغير هنا
+
   const AppButton({
     super.key,
     this.borderRadius,
@@ -27,24 +29,48 @@ class AppButton extends StatelessWidget {
     required this.textStyle,
     required this.onPressed,
     this.icon,
+    this.isLoading = false, // 👈 2. خلي قيمته الافتراضية false عشان ما يضربش في بقية الشاشات
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      onPressed: onPressed,
-      label: Text(buttonText, style: textStyle),
-      icon: icon ?? Icon(Icons.arrow_forward, color: Colors.black , size: 16.sp,),
+      
+      // 👈 3. لو بيحمل، بنعطل الـ onPressed ونخليها null عشان المستخدم ما يضغطش مرتين ورا بعض
+      onPressed: isLoading ? null : onPressed,
+      
+      // 👈 4. لو بيحمل، بنعرض مؤشر التحميل مكان النص، ولو مش بيحمل بنعرض النص عادي
+      label: isLoading
+          ? SizedBox(
+            
+              height: 20.h,
+              width: 20.w,
+              child:  CircularProgressIndicator(
+                color: Colors.white, // تقدر تغير اللون حسب لون الزرار بتاعك
+                strokeWidth: 2.5.w,
+                
+              ),
+            )
+          : Text(buttonText, style: textStyle),
+          
+      // 👈 5. لو بيحمل، بنخفي الأيقونة تماماً عن طريق عرض SizedBox فاضي
+      icon: isLoading
+          ? const SizedBox.shrink()
+          : (icon ?? Icon(Icons.arrow_forward, color: Colors.black, size: 16.sp)),
 
       style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 35),
+            borderRadius: BorderRadius.circular(borderRadius ?? 35.r),
           ),
         ),
 
         backgroundColor: WidgetStatePropertyAll(
-          backgroundColor ?? AppColors.primaryColor,
+          // 👈 6. لو بيحمل يفضل تديله لون رمادي أو تسيبه بنفس اللون بس شفاف شوية عشان يوضح إنه غير فعال
+          isLoading 
+              ? (backgroundColor ?? AppColors.primaryColor).withOpacity(0.7)
+              : (backgroundColor ?? AppColors.primaryColor),
         ),
 
         padding: WidgetStatePropertyAll<EdgeInsets>(
@@ -54,8 +80,7 @@ class AppButton extends StatelessWidget {
           ),
         ),
         fixedSize: WidgetStatePropertyAll(
-          Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 60.h),
-          // to make the button take the full width of its parent by default
+          Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 55.h),
         ),
       ),
     );

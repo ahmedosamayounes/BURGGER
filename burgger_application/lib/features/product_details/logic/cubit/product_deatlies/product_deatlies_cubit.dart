@@ -1,7 +1,8 @@
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/features/home/data/repo/product_details/product_details_repo.dart';
-import 'package:burgger_application/features/home/logic/cubit/products/products_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/networking/api_result.dart';
+import '../../../../home/data/repo/product_details/product_details_repo.dart';
+import '../../../../home/logic/cubit/products/products_state.dart';
 
 class ProductDeatliesCubit extends Cubit<ProductsState> {
   final ProductDetailsRepo productDeatliesRepo;
@@ -21,7 +22,7 @@ class ProductDeatliesCubit extends Cubit<ProductsState> {
     }
 
     selectedToppings = newList; // بنحدث المتغير الأصلي بالنسخة الجديدة
-
+    if (isClosed) return;
     // 🔥 هنا بنعمل emit لحالة جديدة
     state.maybeWhen(
       productDetailsSuccess: (data) {
@@ -30,8 +31,11 @@ class ProductDeatliesCubit extends Cubit<ProductsState> {
       },
       orElse: () {},
     );
+    
   }
-   void sideOptionToggle(int sideOptionId) {
+  
+
+  void sideOptionToggle(int sideOptionId) {
     final newList = List<int>.from(selectedSides);
 
     if (newList.contains(sideOptionId)) {
@@ -41,7 +45,7 @@ class ProductDeatliesCubit extends Cubit<ProductsState> {
     }
 
     selectedSides = newList;
-
+    if (isClosed) return;
     state.maybeWhen(
       productDetailsSuccess: (data) {
         emit(ProductsState.productDetailsSuccess(data));
@@ -62,6 +66,7 @@ class ProductDeatliesCubit extends Cubit<ProductsState> {
     emit(const ProductsState.loading());
 
     final response = await productDeatliesRepo.getProductByid(id);
+    if (isClosed) return;
     response.when(
       success: (productsModel) {
         emit(ProductsState.productDetailsSuccess(productsModel));

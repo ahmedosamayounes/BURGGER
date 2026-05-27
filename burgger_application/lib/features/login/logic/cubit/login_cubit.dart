@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/core/networking/dio_factory.dart';
-import 'package:burgger_application/features/login/data/models/login_reqeust_model.dart';
-import 'package:burgger_application/features/login/data/repo/login_repo.dart';
-import 'package:burgger_application/features/login/logic/cubit/login_state.dart';
+import 'package:burgger_application/core/helpers/constants.dart';
+import 'package:burgger_application/core/helpers/shared_pref_helper.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/networking/api_result.dart';
+import '../../../../core/networking/dio_factory.dart';
+import '../../data/models/login_reqeust_model.dart';
+import '../../data/repo/login_repo.dart';
+import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepo loginRepo;
@@ -15,8 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
   final formKey = GlobalKey<FormState>();
 
   void emitloginstates() async {
-
- emit(LoginState.loading());
+    emit(LoginState.loading());
 
     final response = await loginRepo.login(
       LoginReqeustModel(
@@ -24,18 +26,30 @@ class LoginCubit extends Cubit<LoginState> {
         password: passwordController.text,
       ),
     );
-       
-        
-    response.when(
-      success: (loginResponse) {
-        print("TOKEN FROM LOGIN = ${loginResponse.data?.token}");
-          DioFactory.setToken(loginResponse.data!.token!); // 👈 هنا
 
+    if (isClosed) return;
+    response.when(
+      success: (loginResponse) async {
+        debugPrint("Data from API: ${loginResponse.data?.name}");
+        await saveUserToken(loginResponse.data?.token ?? '');
+        await saveUserName(loginResponse.data?.name ?? '');
+
+        if (isClosed) return;
         emit(LoginState.success(loginResponse));
       },
       failure: (error) {
+        if (isClosed) return;
         emit(LoginState.error(errorMessage: error.apiErrorModel.message ?? ''));
       },
     );
+  }
+
+  Future<void> saveUserToken(String token) async {
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
+    DioFactory.setTokenIntoHeaderAfterLogin(token);
+  }
+
+  Future<void> saveUserName(String name) async {
+    await SharedPrefHelper.setData('userName', name); 
   }
 }

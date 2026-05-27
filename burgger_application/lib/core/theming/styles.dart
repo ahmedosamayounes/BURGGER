@@ -1,5 +1,5 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/font_weight_helper.dart';
+import 'app_colors.dart';
+import 'font_weight_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,6 +33,7 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.extraBold,
     color: AppColors.primaryColor,
   );
+
 
   static TextStyle font30PrimaryColorExtraBold = GoogleFonts.plusJakartaSans(
     fontSize: 30.sp,
@@ -119,5 +120,31 @@ class AppTextStyle {
     fontSize: 22.sp,
     fontWeight: FontWeight.bold,
     color: Colors.white
+  );
+    static TextStyle font20RedBold = GoogleFonts.plusJakartaSans(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.bold,
+    color:  AppColors.backgroundColor
+  );
+      static TextStyle font14PriceColorBold = GoogleFonts.plusJakartaSans(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+    color:  AppColors.errorColor
+  );
+  
+    static TextStyle font14WhiteColorExtraBold = GoogleFonts.plusJakartaSans(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: Colors.white,
+  );
+    static TextStyle font14WhiteColorMedium = GoogleFonts.plusJakartaSans(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.light,
+    color: Colors.white,
+  );
+        static TextStyle font16ErrorColorBold = GoogleFonts.plusJakartaSans(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.bold,
+    color:  AppColors.errorColor
   );
 }

@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/networking/api_error_handler.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/features/product_details/data/repo/toppings_repo.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/toppings/toppings_state.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../../core/networking/api_result.dart';
+import '../../../data/repo/toppings_repo.dart';
+import 'toppings_state.dart';
 
 class ToppingsCubit extends Cubit<ToppingsState> {
   final ToppingsRepo toppingsRepo;  

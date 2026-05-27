@@ -1,7 +1,8 @@
-import 'package:burgger_application/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../core/theming/styles.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -9,8 +10,8 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        width: 300.w, // مثلاً خلي الـ body 300 وحدة عرض فقط
+      child: SizedBox(
+        width: 300.w, 
         child: Column(
           children: [
             RichText(
@@ -29,7 +30,7 @@ class Header extends StatelessWidget {
                 ],
               ),
             ),
-            Gap(5.h),
+            Gap(5),
             Text(
               'Elevate your palette. Unlock exclusive dining experiences and culinary mastery.',
               style: AppTextStyle.font18WhitelightColorMeduim,

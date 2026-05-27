@@ -1,4 +1,3 @@
-import 'package:burgger_application/features/home/logic/cubit/categories/categories_cubit.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {

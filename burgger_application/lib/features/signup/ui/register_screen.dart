@@ -1,13 +1,12 @@
-import 'package:burgger_application/core/shared/app_bar.dart';
-import 'package:burgger_application/core/shared/app_button.dart';
-import 'package:burgger_application/core/shared/app_logo.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/signup/logic/cubit/signup_cubit.dart';
-import 'package:burgger_application/features/signup/ui/widgets/already_have_account_text.dart';
-import 'package:burgger_application/features/signup/ui/widgets/header.dart';
-import 'package:burgger_application/features/signup/ui/widgets/register_form.dart';
-import 'package:burgger_application/features/signup/ui/widgets/sign_up_bloc_listener.dart';
+import '../../../core/shared/app_bar.dart';
+import '../../../core/shared/app_button.dart';
+import '../../../core/theming/app_colors.dart';
+import '../../../core/theming/styles.dart';
+import '../logic/cubit/signup_cubit.dart';
+import 'widgets/already_have_account_text.dart';
+import 'widgets/header.dart';
+import 'widgets/register_form.dart';
+import 'widgets/sign_up_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +39,7 @@ class RegisterScreen extends StatelessWidget {
                   Gap(20),
 
                   RegisterForm(),
-                  Gap(20.h),
+                  Gap(20),
 
                   AppButton(
                     buttonText: 'Create Account',
@@ -49,13 +48,13 @@ class RegisterScreen extends StatelessWidget {
                       validateThenDoSignup(context);
                     },
                   ),
-                  Gap(20.h),
+                  Gap(20),
                   Align(
                     alignment: Alignment.center,
                     child: AlreadyHaveAccountText(),
                   ),
                   SignupBlocListener(),
-                  Gap(20.h),
+                  Gap(20),
                 ],
               ),
             ),

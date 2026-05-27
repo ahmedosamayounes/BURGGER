@@ -1,8 +1,8 @@
-import 'package:burgger_application/core/helpers/app_regex.dart';
-import 'package:burgger_application/core/shared/app_text_form_field.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/features/login/ui/widgets/paswword_validations.dart';
-import 'package:burgger_application/features/signup/logic/cubit/signup_cubit.dart';
+import '../../../../core/helpers/app_regex.dart';
+import '../../../../core/shared/app_text_form_field.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../login/ui/widgets/paswword_validations.dart';
+import '../../logic/cubit/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -71,7 +71,7 @@ class _RegisterFormState extends State<RegisterForm> {
               color: AppColors.hintColor,
             ),
           ),
-          Gap(20.h),
+          Gap(20),
           AppTextFormField(
             controller: context.read<SignupCubit>().emailController,
             text: 'Email Address',
@@ -90,7 +90,7 @@ class _RegisterFormState extends State<RegisterForm> {
               color: AppColors.hintColor,
             ),
           ),
-          Gap(20.h),
+          Gap(20),
           AppTextFormField(
             controller: context.read<SignupCubit>().phoneController,
             text: 'Phone',
@@ -109,7 +109,7 @@ class _RegisterFormState extends State<RegisterForm> {
               color: AppColors.hintColor,
             ),
           ),
-          Gap(20.h),
+          Gap(20),
           AppTextFormField(
             controller: context.read<SignupCubit>().passwordController,
             text: 'Password',
@@ -138,7 +138,7 @@ class _RegisterFormState extends State<RegisterForm> {
               color: AppColors.hintColor,
             ),
           ),
-          Gap(24.h),
+          Gap(24),
           PasswordValidations(
             hasLowerCase: hasLowercase,
             hasUpperCase: hasUppercase,

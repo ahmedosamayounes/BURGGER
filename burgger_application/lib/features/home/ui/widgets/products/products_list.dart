@@ -1,29 +1,36 @@
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/features/home/data/models/products/products_model.dart';
-import 'package:burgger_application/features/product_details/ui/product_deatlies_screen.dart';
+
+import '../../../../../core/routing/routes_string.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../data/models/products/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-class ProductsList extends StatelessWidget {
+class ProductsList extends StatefulWidget {
   final List<ProductData?> products;
 
-  const ProductsList({super.key, required this.products});
+   const ProductsList({super.key, required this.products});
 
+  @override
+  State<ProductsList> createState() => _ProductsListState();
+}
+
+class _ProductsListState extends State<ProductsList> {
+
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
+      height: 500.h,
+      width: double.infinity,
       child: GridView.builder(
         shrinkWrap: true,
 
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 25,
-          mainAxisSpacing: 25,
-          childAspectRatio: 1 / 1.9,
+          crossAxisSpacing: 25.w,
+          mainAxisSpacing: 25.h,
+          childAspectRatio: 1 / 2.2.w,
         ),
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -33,18 +40,18 @@ class ProductsList extends StatelessWidget {
                       Navigator.pushNamed(
                         context,
                         RoutesString.productDetail,
-                        arguments: products[index],
+                        arguments: widget.products[index],
                       );
                     },
             child: Container(
-              width: 185.w,
+              width: 195.w,
               decoration: BoxDecoration(
                 color: AppColors.backgroundColor2,
             
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(50.r),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding:  EdgeInsets.only(left: 10.r),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -52,12 +59,12 @@ class ProductsList extends StatelessWidget {
                       child: SizedBox(
                         width: 140.w,
                         height: 150.h,
-                        child: Image.network(products[index]!.image ?? ''),
+                        child: Image.network(widget.products[index]!.image ?? ''),
                       ),
                     ),
                     Gap(8),
                     Text(
-                      products[index]!.name ?? '',
+                      widget.products[index]!.name ?? '',
             
                       style: TextStyle(
                         fontSize: 16.sp,
@@ -76,7 +83,7 @@ class ProductsList extends StatelessWidget {
                         ),
                         Gap(5),
                         Text(
-                          products[index]!.rating ?? '',
+                          widget.products[index]!.rating ?? '',
                           style: TextStyle(
                             color: AppColors.secoundryColor,
                             fontSize: 12.sp,
@@ -91,14 +98,14 @@ class ProductsList extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              '\$${products[index]!.price.toString()}',
+                              '\$${widget.products[index]!.price.toString()}',
                               style: TextStyle(
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.primaryColor,
                               ),
                             ),
-                            Gap(40),
+                            Gap(20),
                             CircleAvatar(
                               backgroundColor: AppColors.primaryColor,
                               child: Icon(
@@ -116,7 +123,7 @@ class ProductsList extends StatelessWidget {
             ),
           );
         },
-        itemCount: products.length,
+        itemCount: widget.products.length,
       ),
     );
   }

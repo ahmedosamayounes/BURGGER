@@ -1,7 +1,7 @@
-import 'package:burgger_application/core/networking/api_error_handler.dart';
-import 'package:burgger_application/core/networking/api_result.dart';
-import 'package:burgger_application/core/networking/web_service.dart';
-import 'package:burgger_application/features/product_details/data/models/product_option/product_option_model.dart';
+import '../../../../core/networking/api_error_handler.dart';
+import '../../../../core/networking/api_result.dart';
+import '../../../../core/networking/web_service.dart';
+import '../models/product_option/product_option_model.dart';
 
 class SideOptionsRepo {
   final WebService webService;

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'profile_request_model.g.dart'; 
 
 @JsonSerializable()

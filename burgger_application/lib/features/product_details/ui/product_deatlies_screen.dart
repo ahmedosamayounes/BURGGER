@@ -1,17 +1,14 @@
-import 'package:burgger_application/core/routing/routes_string.dart';
-import 'package:burgger_application/core/shared/app_bar.dart';
-import 'package:burgger_application/core/shared/app_button.dart';
-import 'package:burgger_application/core/shared/app_logo.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/cart/data/models/cart_request_model.dart';
-import 'package:burgger_application/features/cart/logic/cubit/cart_cubit.dart';
-import 'package:burgger_application/features/home/data/models/products/products_model.dart';
-import 'package:burgger_application/features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
-import 'package:burgger_application/features/home/logic/cubit/products/products_state.dart';
-import 'package:burgger_application/features/product_details/ui/widgets/product_deatlies_photo_name.dart';
-import 'package:burgger_application/features/product_details/ui/widgets/side_options_list.dart';
-import 'package:burgger_application/features/product_details/ui/widgets/toppings_list.dart';
+import 'widgets/add_to_cart_bloc_lisnter.dart';
+import '../../../core/shared/app_bar.dart';
+import '../../../core/theming/app_colors.dart';
+import '../../../core/theming/styles.dart';
+
+import '../../home/data/models/products/products_model.dart';
+import '../logic/cubit/product_deatlies/product_deatlies_cubit.dart';
+import '../../home/logic/cubit/products/products_state.dart';
+import 'widgets/product_deatlies_photo_name.dart';
+import 'widgets/side_options_list.dart';
+import 'widgets/toppings_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,31 +22,41 @@ class ProductDeatlies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBarr( leading: Icon(Icons.arrow_back, color: AppColors.primaryColor,)),
+      appBar: AppBarr(
+        leading: Icon(Icons.arrow_back, color: AppColors.primaryColor),
+      ),
 
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 20),
-            child: BlocBuilder<ProductDeatliesCubit, ProductsState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  orElse: () {
-                    return const SizedBox.shrink();
-                  },
-                  error: (errorHandler) => const SizedBox.shrink(),
-
-                  initial: () => const SizedBox.shrink(),
-                  loading: () => Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
-                    ),
+        child: BlocBuilder<ProductDeatliesCubit, ProductsState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () {
+                return const SizedBox.shrink();
+              },
+              error: (errorHandler) {
+                return Center(
+                  child: Text(
+                    errorHandler.apiErrorModel.message??
+                        'Something went wrong', style: AppTextStyle.font16ErrorColorBold,
                   ),
-                  productDetailsSuccess: (productsdata) {
-                    return Column(
+                );
+              },
+
+              initial: () => const SizedBox.shrink(),
+              loading: () => Center(
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
+              ),
+              productDetailsSuccess: (productsdata) {
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.h,
+                      vertical: 20.w,
+                    ),
+                    child: Column(
                       children: [
                         ProductDeatliesPhotoName(product: product),
-                        Gap(20.h),
+                        Gap(20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -57,7 +64,7 @@ class ProductDeatlies extends StatelessWidget {
                               'Toppings',
                               style: AppTextStyle.font20whitelightColorBold,
                             ),
-                            Gap(12.h),
+                            Gap(12),
 
                             ToppingsList(),
                           ],
@@ -76,41 +83,14 @@ class ProductDeatlies extends StatelessWidget {
                           ],
                         ),
                         Gap(20),
-                        AppButton(
-                          buttonText: 'Add to Cart',
-                          textStyle: AppTextStyle.font18TextColorReqular,
-                          onPressed: () async {
-                            final productCubit = context
-                                .read<ProductDeatliesCubit>();
-                            final cartCubit = context.read<CartCubit>();
-
-                            if (product.id == null) return;
-
-                            final model = CartRequestModel(
-                              items: [
-                                CartItem(
-                                  productId: product.id!,
-                                  quantity: 1,
-                                  spicy: 0.1,
-                                  toppings: productCubit.selectedToppings,
-                                  sideOptions: productCubit.selectedSides,
-                                ),
-                              ],
-                            );
-
-                            cartCubit.addToCart(model);
-                            if (context.mounted) {
-                              Navigator.pushNamed(context, RoutesString.cart);
-                            }
-                          },
-                        ),
+                        AddToCartBlocListener(product: product),
                       ],
-                    );
-                  },
+                    ),
+                  ),
                 );
               },
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

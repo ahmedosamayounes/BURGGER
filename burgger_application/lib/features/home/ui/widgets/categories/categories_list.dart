@@ -1,11 +1,12 @@
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/features/home/data/models/categories/categories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/theming/app_colors.dart';
+import '../../../data/models/categories/categories_model.dart';
+
 class CategoriesList extends StatefulWidget {
   final List<CategoryData?> categories;
-  CategoriesList({super.key, required this.categories});
+  const CategoriesList({super.key, required this.categories});
 
   @override
   State<CategoriesList> createState() => _CategoriesListState();
