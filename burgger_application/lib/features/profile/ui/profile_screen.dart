@@ -1,6 +1,6 @@
+import 'package:burgger_application/features/profile/ui/widgets/profile_form.dart';
+
 import '../../../core/shared/app_bar.dart';
-import '../../../core/shared/app_button.dart';
-import '../../../core/shared/app_text_form_field.dart';
 import '../../../core/theming/app_colors.dart';
 import '../../../core/theming/styles.dart';
 import '../logic/cubit_get_data/profile_cubit.dart';
@@ -17,13 +17,13 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBarr(
-          leading: Icon(Icons.arrow_back, color: AppColors.primaryColor),
-        ),
+    return Scaffold(
+      appBar: CustomAppBar(
+        leading: Icon(Icons.arrow_back, color: AppColors.primaryColor),
+      ),
 
-        body: MultiBlocListener(
+      body: SafeArea(
+        child: MultiBlocListener(
           listeners: [ProfileUpdateBlocListener()],
 
           child: BlocBuilder<ProfileCubit, ProfileState>(
@@ -42,17 +42,16 @@ class ProfileScreen extends StatelessWidget {
                         Icon(
                           Icons.error_outline,
                           color: AppColors.errorColor,
-                          size: 50,
+                          size: 50.sp,
                         ),
 
-                        const SizedBox(height: 10),
+                        Gap(10.h),
 
                         Text(
                           e,
                           style: AppTextStyle.font16ErrorColorBold,
                           textAlign: TextAlign.center,
                         ),
-                        
                       ],
                     ),
                   );
@@ -63,101 +62,11 @@ class ProfileScreen extends StatelessWidget {
                   return Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: 20.h,
-                      horizontal: 20.h,
+                      horizontal: 20.w,
                     ),
 
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(65),
-                              child: Image.network(
-                                user?.image ?? '',
-                                width: 110.w,
-                                height: 80.h,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    width: 100.w,
-                                    height: 80.h,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey[200],
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Icon(
-                                      Icons.person,
-                                      size: 50.sp,
-                                      color: Colors.grey,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-
-                          AppTextFormField(
-                            controller: updateCubit.nameController,
-                            hinttext: user?.name ?? 'name',
-                            text: 'Name',
-                            backgroundColor: AppColors.darkGreenColor,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter a valid name';
-                              }
-                            },
-                          ),
-                          Gap(10),
-
-                          AppTextFormField(
-                            controller: updateCubit.emailController,
-                            hinttext: user?.email ?? 'email',
-                            text: 'Email',
-                            backgroundColor: AppColors.darkGreenColor,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter a valid name';
-                              }
-                            },
-                          ),
-                          Gap(10),
-
-                          AppTextFormField(
-                            controller: updateCubit.addressController,
-                            hinttext: user?.address ?? 'address',
-                            text: 'Delivery address',
-                            backgroundColor: AppColors.darkGreenColor,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter a valid name';
-                              }
-                            },
-                          ),
-                          Gap(10),
-
-                          AppTextFormField(
-                            controller: updateCubit.visaController,
-                            hinttext: user?.visa ?? 'visa',
-                            text: 'Visa',
-                            backgroundColor: AppColors.darkGreenColor,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter a valid name';
-                              }
-                            },
-                          ),
-                          Gap(30),
-                          Center(
-                            child: AppButton(
-                              buttonText: 'Update Profile',
-                              textStyle: AppTextStyle.font18TextColorReqular,
-                              onPressed: () {
-                                updateCubit.emitUpdateProfileStates();
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: ProfileForm(user: user, updateCubit: updateCubit),
                     ),
                   );
                 },

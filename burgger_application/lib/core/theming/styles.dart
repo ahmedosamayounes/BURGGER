@@ -89,7 +89,7 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.regular,
     color: AppColors.hintColor,
   );
-  static TextStyle font18TextColorReqular = GoogleFonts.plusJakartaSans(
+  static TextStyle font18TextColorExtraBold = GoogleFonts.plusJakartaSans(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.extraBold,
     color: AppColors.buttonTextColor,

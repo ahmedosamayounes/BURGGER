@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import '../../../core/shared/app_button.dart';
 import '../../../core/theming/styles.dart';
 import '../logic/cubit/login_cubit.dart';
-import 'widgets/bloc_listener_login.dart';
+import 'widgets/login_bloc_listener.dart';
 import 'widgets/brand_header.dart';
 import 'widgets/dont_have_account_text.dart';
 import 'widgets/email_and_password_form.dart';
@@ -16,34 +16,32 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: Scaffold(
-          body: Padding(
-            padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.h),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  BrandHeader(),
-                  Gap(60),
+                  const BrandHeader(),
+                  Gap(60.h),
 
-                  EmailAndPasswordForm(),
-                  Gap(30),
+                  const EmailAndPasswordForm(),
+                  Gap(30.h),
                   AppButton(
-                    icon: SizedBox.shrink(),
                     buttonText: 'Log in',
-                    textStyle: AppTextStyle.font18TextColorReqular,
+                    textStyle: AppTextStyle.font18TextColorExtraBold,
                     onPressed: () {
-                      checkIfValidThenLogin(context);
+                      _checkIfValidThenLogin(context);
                     },
-                    
                   ),
                   Gap(20.h),
-                  DontHaveAccountText(),
-                  BlocListenerLogin(),
+                  const DontHaveAccountText(),
+                  const LoginBlocListener(),
                 ],
               ),
             ),
@@ -53,9 +51,9 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void checkIfValidThenLogin(BuildContext context) {
+  void _checkIfValidThenLogin(BuildContext context) {
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitloginstates();
+      context.read<LoginCubit>().emitLoginStates();
     }
   }
 }

@@ -6,7 +6,7 @@ import '../../../core/theming/styles.dart';
 import '../../home/data/models/products/products_model.dart';
 import '../logic/cubit/product_deatlies/product_deatlies_cubit.dart';
 import '../../home/logic/cubit/products/products_state.dart';
-import 'widgets/product_deatlies_photo_name.dart';
+import 'widgets/product_details_photo_name.dart';
 import 'widgets/side_options_list.dart';
 import 'widgets/toppings_list.dart';
 import 'package:flutter/material.dart';
@@ -14,20 +14,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class ProductDeatlies extends StatelessWidget {
+class ProductDetails extends StatelessWidget {
   final ProductData product;
 
-  const ProductDeatlies({super.key, required this.product});
+  const ProductDetails({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarr(
+      appBar: CustomAppBar(
         leading: Icon(Icons.arrow_back, color: AppColors.primaryColor),
       ),
 
       body: SafeArea(
-        child: BlocBuilder<ProductDeatliesCubit, ProductsState>(
+        child: BlocBuilder<ProductDetailsCubit, ProductsState>(
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () {
@@ -36,8 +36,9 @@ class ProductDeatlies extends StatelessWidget {
               error: (errorHandler) {
                 return Center(
                   child: Text(
-                    errorHandler.apiErrorModel.message??
-                        'Something went wrong', style: AppTextStyle.font16ErrorColorBold,
+                    errorHandler.apiErrorModel.message ??
+                        'Something went wrong',
+                    style: AppTextStyle.font16ErrorColorBold,
                   ),
                 );
               },
@@ -46,17 +47,18 @@ class ProductDeatlies extends StatelessWidget {
               loading: () => Center(
                 child: CircularProgressIndicator(color: AppColors.primaryColor),
               ),
+
               productDetailsSuccess: (productsdata) {
                 return SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 20.h,
-                      vertical: 20.w,
+                      horizontal: 20.w,
+                      vertical: 20.h,
                     ),
                     child: Column(
                       children: [
-                        ProductDeatliesPhotoName(product: product),
-                        Gap(20),
+                        ProductDetailsPhotoName(product: productsdata),
+                        Gap(20.h),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -64,12 +66,12 @@ class ProductDeatlies extends StatelessWidget {
                               'Toppings',
                               style: AppTextStyle.font20whitelightColorBold,
                             ),
-                            Gap(12),
+                            Gap(12.h),
 
-                            ToppingsList(),
+                            const ToppingsList(),
                           ],
                         ),
-                        Gap(10),
+                        Gap(10.h),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -78,11 +80,11 @@ class ProductDeatlies extends StatelessWidget {
                               'Side Options',
                               style: AppTextStyle.font20whitelightColorBold,
                             ),
-                            Gap(10),
-                            SideOptionsList(),
+                            Gap(10.h),
+                            const SideOptionsList(),
                           ],
                         ),
-                        Gap(20),
+                        Gap(20.h),
                         AddToCartBlocListener(product: product),
                       ],
                     ),

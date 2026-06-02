@@ -1,14 +1,14 @@
+import 'package:burgger_application/core/shared/app_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+
 import '../../../core/helpers/extensions.dart';
 import '../../../core/routing/routes_string.dart';
-import '../../../core/shared/app_bar.dart';
 import '../../../core/shared/app_button.dart';
 import '../../../core/theming/app_colors.dart';
 import '../../../core/theming/styles.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 
 class Visa extends StatefulWidget {
   const Visa({super.key});
@@ -35,7 +35,7 @@ class _VisaState extends State<Visa> {
         FocusScope.of(context).unfocus();
       }, // بتخلي الكيبورد لما افتح الفورم ينزل لتحت
       child: Scaffold(
-        appBar: AppBarr(
+        appBar: CustomAppBar(
           leading: Icon(
             Icons.arrow_back,
             color: AppColors.primaryColor,
@@ -96,7 +96,7 @@ class _VisaState extends State<Visa> {
 
                 AppButton(
                   buttonText: "Confirm",
-                  textStyle: AppTextStyle.font18TextColorReqular,
+                  textStyle: AppTextStyle.font18TextColorExtraBold,
                   onPressed: () {
                     if (_key.currentState!.validate()) {
                       showDialog(

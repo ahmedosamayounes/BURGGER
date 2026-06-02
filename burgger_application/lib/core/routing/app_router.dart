@@ -10,14 +10,14 @@ import '../../features/home/ui/home_screen.dart';
 
 import '../../features/product_details/logic/cubit/side_options/side_options_cubit.dart';
 import '../../features/product_details/logic/cubit/toppings/toppings_cubit.dart';
-import '../../features/product_details/ui/product_deatlies_screen.dart';
+import '../../features/product_details/ui/product_details_screen.dart';
 import '../../features/login/logic/cubit/login_cubit.dart';
 import '../../features/login/ui/login_screen.dart';
 import '../../features/profile/logic/cubit_get_data/profile_cubit.dart';
 import '../../features/profile/logic/cubit_update_data/profile_update_cubit.dart';
 import '../../features/profile/ui/profile_screen.dart';
 import '../../features/signup/logic/cubit/signup_cubit.dart';
-import '../../features/signup/ui/register_screen.dart';
+import '../../features/signup/ui/signup_screen.dart';
 import '../../root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +38,7 @@ class AppRouter {
           builder: (_) => Scaffold(
             body: BlocProvider(
               create: (context) => getIt<SignupCubit>(),
-              child: const RegisterScreen(),
+              child: const SignupScreen(),
             ),
           ),
         );
@@ -68,7 +68,7 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) =>
-                    ProductDeatliesCubit(getIt())
+                    ProductDetailsCubit(getIt())
                       ..getProductById(product.id ?? 1),
               ),
               BlocProvider(
@@ -81,7 +81,7 @@ class AppRouter {
               BlocProvider(create: (context) => getIt<CartCubit>()),
             ],
 
-            child: ProductDeatlies(product: settings.arguments as ProductData),
+            child: ProductDetails(product: settings.arguments as ProductData),
           ),
         );
 

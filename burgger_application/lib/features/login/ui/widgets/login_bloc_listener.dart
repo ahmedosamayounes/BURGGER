@@ -7,8 +7,8 @@ import '../../logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BlocListenerLogin extends StatelessWidget {
-  const BlocListenerLogin({super.key});
+class LoginBlocListener extends StatelessWidget {
+  const LoginBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {

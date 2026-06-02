@@ -1,5 +1,6 @@
-import '../../data/models/cart_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../data/models/cart_response_model.dart';
 
 part 'cart_state.freezed.dart';
 

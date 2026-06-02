@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:burgger_application/core/helpers/shared_pref_helper.dart';
+import '../../../../../core/helpers/shared_pref_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/networking/api_result.dart';

@@ -4,15 +4,11 @@ import '../../../../../core/networking/api_result.dart';
 import '../../../../home/data/repo/product_details/product_details_repo.dart';
 import '../../../../home/logic/cubit/products/products_state.dart';
 
-class ProductDeatliesCubit extends Cubit<ProductsState> {
-  final ProductDetailsRepo productDeatliesRepo;
+class ProductDetailsCubit extends Cubit<ProductsState> {
+  final ProductDetailsRepo productDetailssRepo;
   List<int> selectedToppings = [];
   List<int> selectedSides = [];
   void toggleTopping(int toppingId) {
-    // ❌ الطريقة دي غلط (بتعدل في نفس المكان في الذاكرة)
-    // selectedToppings.add(toppingId);
-
-    // ✅ الطريقة دي صح (بتعمل قائمة جديدة تماماً)
     final newList = List<int>.from(selectedToppings);
 
     if (newList.contains(toppingId)) {
@@ -21,19 +17,15 @@ class ProductDeatliesCubit extends Cubit<ProductsState> {
       newList.add(toppingId);
     }
 
-    selectedToppings = newList; // بنحدث المتغير الأصلي بالنسخة الجديدة
+    selectedToppings = newList;
     if (isClosed) return;
-    // 🔥 هنا بنعمل emit لحالة جديدة
     state.maybeWhen(
       productDetailsSuccess: (data) {
-        // إرسال الحالة من جديد بيخلي context.watch() تحس بالتغيير
         emit(ProductsState.productDetailsSuccess(data));
       },
       orElse: () {},
     );
-    
   }
-  
 
   void sideOptionToggle(int sideOptionId) {
     final newList = List<int>.from(selectedSides);
@@ -59,13 +51,13 @@ class ProductDeatliesCubit extends Cubit<ProductsState> {
     selectedSides.clear();
   }
 
-  ProductDeatliesCubit(this.productDeatliesRepo)
+  ProductDetailsCubit(this.productDetailssRepo)
     : super(const ProductsState.initial());
 
   void getProductById(int id) async {
     emit(const ProductsState.loading());
 
-    final response = await productDeatliesRepo.getProductByid(id);
+    final response = await productDetailssRepo.getProductByid(id);
     if (isClosed) return;
     response.when(
       success: (productsModel) {

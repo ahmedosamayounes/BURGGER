@@ -8,14 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class RegisterForm extends StatefulWidget {
-  const RegisterForm({super.key});
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
 
   @override
-  State<RegisterForm> createState() => _RegisterFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _RegisterFormState extends State<RegisterForm> {
+class _SignUpFormState extends State<SignUpForm> {
   bool isPasswordObscureText = true;
   bool isPasswordConfirmationObscureText = true;
 

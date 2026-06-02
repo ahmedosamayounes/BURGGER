@@ -1,10 +1,11 @@
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/styles.dart';
-import '../../logic/cubit/product_deatlies/product_deatlies_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
+import '../../logic/cubit/product_deatlies/product_deatlies_cubit.dart';
 
 class ToppingsAndSideOptionsUi extends StatefulWidget {
   final String name;
@@ -29,7 +30,7 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
   @override
   Widget build(BuildContext context) {
     // بنجيب الـ cubit من غير ما نراقبه (read بس) عشان نبعتله الداتا
-    final cubit = context.read<ProductDeatliesCubit>();
+    final cubit = context.read<ProductDetailsCubit>();
 
     // بنشوف هل العنصر ده مضاف في القوائم ولا لأ
     final isSelected = widget.isTopping

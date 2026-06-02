@@ -1,3 +1,7 @@
+import 'package:burgger_application/features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/routing/routes_string.dart';
 import '../../../../core/shared/app_button.dart';
 import '../../../../core/theming/styles.dart';
@@ -5,9 +9,6 @@ import '../../../cart/data/models/cart_request_model.dart';
 import '../../../cart/logic/cubit/cart_cubit.dart';
 import '../../../cart/logic/cubit/cart_state.dart';
 import '../../../home/data/models/products/products_model.dart';
-import '../../logic/cubit/product_deatlies/product_deatlies_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddToCartBlocListener extends StatelessWidget {
   final ProductData product;
@@ -53,9 +54,9 @@ class AddToCartBlocListener extends StatelessWidget {
       child: AppButton(
         buttonText: 'Add to Cart',
         isLoading: isLoading,
-        textStyle: AppTextStyle.font18TextColorReqular,
+        textStyle: AppTextStyle.font18TextColorExtraBold,
         onPressed: () {
-          final productCubit = context.read<ProductDeatliesCubit>();
+          final productCubit = context.read<ProductDetailsCubit>();
           final cartCubit = context.read<CartCubit>();
 
           if (product.id == null) return;

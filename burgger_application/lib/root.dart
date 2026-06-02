@@ -1,4 +1,4 @@
-import 'package:burgger_application/core/theming/styles.dart';
+import 'core/theming/styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/routing/app_router.dart';

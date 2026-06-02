@@ -1,10 +1,11 @@
 
-import '../../../../../core/routing/routes_string.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../data/models/products/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../../core/routing/routes_string.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../data/models/products/products_model.dart';
 
 class ProductsList extends StatefulWidget {
   final List<ProductData?> products;

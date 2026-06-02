@@ -1,4 +1,4 @@
-import 'package:burgger_application/features/home/ui/widgets/home_header.dart';
+import 'widgets/home_header.dart';
 
 import '../../../core/theming/app_colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,32 +12,34 @@ import '../../../core/shared/app_bar.dart';
 import 'widgets/categories/categories_bloc_builder.dart';
 import 'widgets/products/products_bloc_builder.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      appBar: AppBarr(iconAction: Icon(CupertinoIcons.cart_fill , color: Colors.white, size: 18,), onTap: () => context.pushNamed(RoutesString.cart) ,         leading: Icon(Icons.arrow_back, color: AppColors.primaryColor),),
+      appBar: CustomAppBar(
+        iconAction: Icon(
+          CupertinoIcons.cart_fill,
+          color: Colors.white,
+          size: 18.sp,
+        ),
+        onTap: () => context.pushNamed(RoutesString.cart),
+        leading: Icon(Icons.arrow_back, color: AppColors.primaryColor),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 20.h),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              HomeHeader(),
-                Gap(20),
-                CategoriesBlocBuilder(),
-                Gap(20),
-                ProductsBlocBuilder(),
+                const HomeHeader(),
+                Gap(20.h),
+                const CategoriesBlocBuilder(),
+                Gap(20.h),
+                const ProductsBlocBuilder(),
               ],
             ),
           ),

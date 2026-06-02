@@ -4,8 +4,8 @@ import '../theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppBarr extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarr({super.key, this.iconAction, this.onTap, this.leading});
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({super.key, this.iconAction, this.onTap, this.leading});
   final Icon? iconAction;
   final Icon? leading;
   final void Function()? onTap;

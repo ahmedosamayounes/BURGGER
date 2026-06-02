@@ -6,10 +6,10 @@ import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../home/data/models/products/products_model.dart';
 
-class ProductDeatliesPhotoName extends StatelessWidget {
+class ProductDetailsPhotoName extends StatelessWidget {
   final ProductData product;
 
-  const ProductDeatliesPhotoName({super.key, required this.product});
+  const ProductDetailsPhotoName({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class ProductDeatliesPhotoName extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              flex: 3, // النص بياخد 3 أجزاء من المساحة
+              flex: 3,
               child: Text(
                 product.description ?? 'No description available',
                 style: AppTextStyle.font14TextColorMedium,

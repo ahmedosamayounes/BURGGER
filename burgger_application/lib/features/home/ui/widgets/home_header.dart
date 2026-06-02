@@ -1,6 +1,6 @@
-import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/home/logic/cubit/categories/categories_cubit.dart';
-import 'package:burgger_application/features/home/logic/cubit/categories/categories_state.dart';
+import '../../../../core/theming/styles.dart';
+import '../../logic/cubit/categories/categories_cubit.dart';
+import '../../logic/cubit/categories/categories_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
