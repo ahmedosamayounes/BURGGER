@@ -29,12 +29,12 @@ class ProductDetailsPhotoName extends StatelessWidget {
           ),
         ),
 
-        Gap(5),
+        Gap(5.h),
         Text(
           product.name ?? '',
           style: AppTextStyle.font30WhitelightColorExtraBold,
         ),
-        Gap(10),
+        Gap(10.h),
         Row(
           children: [
             Expanded(
@@ -44,7 +44,7 @@ class ProductDetailsPhotoName extends StatelessWidget {
                 style: AppTextStyle.font14TextColorMedium,
               ),
             ),
-            Gap(10),
+            Gap(10.h),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -52,11 +52,15 @@ class ProductDetailsPhotoName extends StatelessWidget {
                   '\$ ${product.price ?? '0.0'}',
                   style: AppTextStyle.font30PrimaryColorExtraBold,
                 ),
-                Gap(5),
+                Gap(5.h),
                 Row(
                   children: [
-                    Icon(Icons.star, color: AppColors.secoundryColor, size: 16.sp),
-                    Gap(2),
+                    Icon(
+                      Icons.star,
+                      color: AppColors.secoundryColor,
+                      size: 16.sp,
+                    ),
+                    Gap(2.w),
                     Text(
                       product.rating ?? '0',
                       style: TextStyle(color: AppColors.secoundryColor),
@@ -65,7 +69,6 @@ class ProductDetailsPhotoName extends StatelessWidget {
                 ),
               ],
             ),
-            Gap(5),
           ],
         ),
       ],

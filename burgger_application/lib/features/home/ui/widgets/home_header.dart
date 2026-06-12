@@ -1,9 +1,10 @@
-import '../../../../core/theming/styles.dart';
-import '../../logic/cubit/categories/categories_cubit.dart';
-import '../../logic/cubit/categories/categories_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../core/theming/styles.dart';
+import '../../logic/cubit/categories/categories_cubit.dart';
+import '../../logic/cubit/categories/categories_state.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
@@ -16,18 +17,18 @@ class _HomeHeaderState extends State<HomeHeader> {
   @override
   void initState() {
     super.initState();
-    // نداء الدالة أول ما الـ Widget يدخل الشاشة عشان يقرأ الاسم الفريش من الـ SharedPref
     context.read<CategoriesCubit>().getUserName();
   }
   @override
   Widget build(BuildContext context) {
+    final categoriesCubit = context.watch<CategoriesCubit>();
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Morning, ${context.read<CategoriesCubit>().userName ?? 'User'}'
+              'Morning, ${categoriesCubit.userName ?? 'User'}'
                   .toUpperCase(),
               maxLines: 1,
             

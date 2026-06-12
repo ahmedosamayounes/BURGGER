@@ -1,7 +1,8 @@
-import '../../../../core/shared/app_logo.dart';
-import '../../../../core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../core/shared/app_logo.dart';
+import '../../../../core/theming/styles.dart';
 
 class BrandHeader extends StatelessWidget {
   const BrandHeader({super.key});

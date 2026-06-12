@@ -1,15 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/networking/api_result.dart';
-import '../../../../home/data/repo/product_details/product_details_repo.dart';
 import '../../../../home/logic/cubit/products/products_state.dart';
 
 class ProductDetailsCubit extends Cubit<ProductsState> {
-  final ProductDetailsRepo productDetailssRepo;
-  List<int> selectedToppings = [];
-  List<int> selectedSides = [];
-  void toggleTopping(int toppingId) {
-    final newList = List<int>.from(selectedToppings);
+  List<int> _selectedToppings = [];
+  List<int> _selectedSides = [];
+
+  List<int> get selectedToppings => _selectedToppings;
+  List<int> get selectedSides => _selectedSides;
+
+  ProductDetailsCubit() : super(const ProductsState.initial());
+
+  void toggleTopping(int toppingId) { 
+    final newList = List<int>.from(_selectedToppings);
 
     if (newList.contains(toppingId)) {
       newList.remove(toppingId);
@@ -17,18 +20,15 @@ class ProductDetailsCubit extends Cubit<ProductsState> {
       newList.add(toppingId);
     }
 
-    selectedToppings = newList;
+    _selectedToppings = newList;
     if (isClosed) return;
-    state.maybeWhen(
-      productDetailsSuccess: (data) {
-        emit(ProductsState.productDetailsSuccess(data));
-      },
-      orElse: () {},
-    );
+
+
+    emit(const ProductsState.selectionChanged()); 
   }
 
   void sideOptionToggle(int sideOptionId) {
-    final newList = List<int>.from(selectedSides);
+    final newList = List<int>.from(_selectedSides);
 
     if (newList.contains(sideOptionId)) {
       newList.remove(sideOptionId);
@@ -36,36 +36,15 @@ class ProductDetailsCubit extends Cubit<ProductsState> {
       newList.add(sideOptionId);
     }
 
-    selectedSides = newList;
+    _selectedSides = newList;
     if (isClosed) return;
-    state.maybeWhen(
-      productDetailsSuccess: (data) {
-        emit(ProductsState.productDetailsSuccess(data));
-      },
-      orElse: () {},
-    );
+
+    emit(const ProductsState.selectionChanged());
   }
 
   void clearSelections() {
-    selectedToppings.clear();
-    selectedSides.clear();
-  }
-
-  ProductDetailsCubit(this.productDetailssRepo)
-    : super(const ProductsState.initial());
-
-  void getProductById(int id) async {
-    emit(const ProductsState.loading());
-
-    final response = await productDetailssRepo.getProductByid(id);
-    if (isClosed) return;
-    response.when(
-      success: (productsModel) {
-        emit(ProductsState.productDetailsSuccess(productsModel));
-      },
-      failure: (error) {
-        emit(ProductsState.error(error));
-      },
-    );
+    _selectedToppings.clear();
+    _selectedSides.clear();
+    emit(const ProductsState.initial()); 
   }
 }

@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import '../../features/cart/data/repo/cart_repo.dart';
 import '../../features/cart/logic/cubit/cart_cubit.dart';
 import '../../features/home/data/repo/categories/categories_repo.dart';
-import '../../features/home/data/repo/product_details/product_details_repo.dart';
 import '../../features/home/data/repo/products/products_repo.dart';
 import '../../features/home/logic/cubit/categories/categories_cubit.dart';
 import '../../features/home/logic/cubit/products/products_cubit.dart';
@@ -12,7 +11,6 @@ import '../../features/login/data/repo/login_repo.dart';
 import '../../features/login/logic/cubit/login_cubit.dart';
 import '../../features/product_details/data/repo/side_options_repo.dart';
 import '../../features/product_details/data/repo/toppings_repo.dart';
-import '../../features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
 import '../../features/product_details/logic/cubit/side_options/side_options_cubit.dart';
 import '../../features/product_details/logic/cubit/toppings/toppings_cubit.dart';
 import '../../features/profile/data/repo/profile_repo.dart';
@@ -48,14 +46,6 @@ Future<void> setupGetIt() async {
   //products
   getIt.registerLazySingleton<ProductsRepo>(() => ProductsRepo(getIt()));
   getIt.registerFactory<ProductsCubit>(() => ProductsCubit(getIt()));
-
-  // product Deatils
-  getIt.registerLazySingleton<ProductDetailsRepo>(
-    () => ProductDetailsRepo(getIt()),
-  );
-  getIt.registerFactory<ProductDetailsCubit>(
-    () => ProductDetailsCubit(getIt()),
-  );
 
   // Toppings
   getIt.registerLazySingleton<ToppingsRepo>(() => ToppingsRepo(getIt()));

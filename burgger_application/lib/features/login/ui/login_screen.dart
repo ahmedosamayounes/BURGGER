@@ -6,10 +6,10 @@ import 'package:gap/gap.dart';
 import '../../../core/shared/app_button.dart';
 import '../../../core/theming/styles.dart';
 import '../logic/cubit/login_cubit.dart';
-import 'widgets/login_bloc_listener.dart';
 import 'widgets/brand_header.dart';
 import 'widgets/dont_have_account_text.dart';
 import 'widgets/email_and_password_form.dart';
+import 'widgets/login_bloc_listener.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

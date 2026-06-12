@@ -1,5 +1,5 @@
 
-import 'package:burgger_application/features/signup/ui/widgets/signup_form.dart';
+import 'widgets/signup_form.dart';
 import '../../../core/shared/app_bar.dart';
 import '../../../core/shared/app_button.dart';
 import '../../../core/theming/app_colors.dart';

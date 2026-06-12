@@ -1,11 +1,12 @@
-import 'package:burgger_application/core/shared/app_button.dart';
-import 'package:burgger_application/core/shared/app_text_form_field.dart';
-import 'package:burgger_application/core/theming/app_colors.dart';
-import 'package:burgger_application/core/theming/styles.dart';
-import 'package:burgger_application/features/profile/logic/cubit_update_data/profile_update_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../core/shared/app_button.dart';
+import '../../../../core/shared/app_text_form_field.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
+import '../../logic/cubit_update_data/profile_update_cubit.dart';
 
 class ProfileForm extends StatelessWidget {
   const ProfileForm({super.key, required this.updateCubit, this.user});

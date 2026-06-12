@@ -29,10 +29,8 @@ class ToppingsAndSideOptionsUi extends StatefulWidget {
 class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
   @override
   Widget build(BuildContext context) {
-    // بنجيب الـ cubit من غير ما نراقبه (read بس) عشان نبعتله الداتا
     final cubit = context.read<ProductDetailsCubit>();
 
-    // بنشوف هل العنصر ده مضاف في القوائم ولا لأ
     final isSelected = widget.isTopping
         ? cubit.selectedToppings.contains(widget.id)
         : cubit.selectedSides.contains(widget.id);
@@ -40,7 +38,7 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
     return Stack(
       children: [
         Padding(
-          padding:  EdgeInsets.only(right: 20.r),
+          padding: EdgeInsets.only(right: 20.r),
           child: Container(
             width: 110.w,
             height: 130.h,
@@ -49,14 +47,14 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
               color: AppColors.darkGreenColor,
             ),
             child: Padding(
-              padding:  EdgeInsets.all(6.r),
+              padding: EdgeInsets.all(6.r),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
                     child: Text(
-                      widget.name, 
+                      widget.name,
                       style: AppTextStyle.font14TextColorWhite,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -64,7 +62,6 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
                   const Gap(5),
                   GestureDetector(
                     onTap: () {
-                      // 👈 بنستخدم setState هنا عشان نريح دماغنا والزرار يقلب فوراً
                       setState(() {
                         if (widget.isTopping) {
                           cubit.toggleTopping(widget.id);
@@ -77,8 +74,12 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
                       backgroundColor: AppColors.whitelightColor,
                       radius: 12.h,
                       child: isSelected
-                          ?  Icon(Icons.check, color: Colors.black, size: 16.sp)
-                          : Icon(Icons.add, color: AppColors.backgroundColor, size: 16.sp),
+                          ? Icon(Icons.check, color: Colors.black, size: 16.sp)
+                          : Icon(
+                              Icons.add,
+                              color: AppColors.backgroundColor,
+                              size: 16.sp,
+                            ),
                     ),
                   ),
                 ],
@@ -87,7 +88,7 @@ class _ToppingsAndSideOptionsUiState extends State<ToppingsAndSideOptionsUi> {
           ),
         ),
         Padding(
-          padding:  EdgeInsets.only(right: 20.r),
+          padding: EdgeInsets.only(right: 20.r),
           child: Container(
             alignment: Alignment.center,
             height: 84.h,

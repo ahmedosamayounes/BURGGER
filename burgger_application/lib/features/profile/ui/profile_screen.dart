@@ -1,4 +1,7 @@
-import 'package:burgger_application/features/profile/ui/widgets/profile_form.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 import '../../../core/shared/app_bar.dart';
 import '../../../core/theming/app_colors.dart';
@@ -6,11 +9,8 @@ import '../../../core/theming/styles.dart';
 import '../logic/cubit_get_data/profile_cubit.dart';
 import '../logic/cubit_get_data/profile_state.dart';
 import '../logic/cubit_update_data/profile_update_cubit.dart';
+import 'widgets/profile_form.dart';
 import 'widgets/profile_update_bloc_listener.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

@@ -13,7 +13,6 @@ import 'package:gap/gap.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
-  //K
   
 
   @override

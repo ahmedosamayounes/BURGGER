@@ -1,4 +1,4 @@
-import 'package:burgger_application/core/shared/app_bar.dart';
+import '../../../core/shared/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,7 +33,7 @@ class _VisaState extends State<Visa> {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
-      }, // بتخلي الكيبورد لما افتح الفورم ينزل لتحت
+      },
       child: Scaffold(
         appBar: CustomAppBar(
           leading: Icon(
@@ -56,7 +56,7 @@ class _VisaState extends State<Visa> {
                   showBackView: isShow,
                   onCreditCardWidgetChange: (v) {},
                   cardBgColor: Colors.grey.shade900,
-                  isHolderNameVisible: true, // بتخلي الاسم يظهر
+                  isHolderNameVisible: true,
                 ),
 
                 CreditCardForm(
@@ -144,7 +144,6 @@ class _VisaState extends State<Visa> {
     );
   }
 
-  // دي فانكشن بتخليني كل ما اكتب حاجه تظهر في الفيزا
 
   void onCreditCardModelChange(CreditCardModel data) {
     setState(() {

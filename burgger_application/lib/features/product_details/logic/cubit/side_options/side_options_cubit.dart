@@ -9,14 +9,18 @@ class SideOptionsCubit extends Cubit<SideOptionsState> {
   SideOptionsCubit(this.sideOptionsRepo) : super(SideOptionsState.initial());
 
   void getSideOptions() async {
+    if (isClosed) return;
     emit(const SideOptionsState.loading());
+
     final response = await sideOptionsRepo.getSideOptions();
+
+    if (isClosed) return;
     response.when(
       success: (sideOptionsModel) {
-        emit(SideOptionsState.success(sideOptionsModel.data));
+        if (!isClosed) emit(SideOptionsState.success(sideOptionsModel.data));
       },
       failure: (error) {
-        emit(SideOptionsState.error(error));
+        if (!isClosed) emit(SideOptionsState.error(error));
       },
     );
   }

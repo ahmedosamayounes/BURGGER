@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import '../../../../../core/helpers/shared_pref_helper.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/helpers/shared_pref_helper.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../data/repo/categories/categories_repo.dart';
 import 'categories_state.dart';
@@ -14,7 +14,6 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     userName = await SharedPrefHelper.getString('userName');
     debugPrint("Retrieved UserName: $userName");
 
-    // بنعمل emit لحالة الـ initial أو حالة مخصصة عشان الـ UI يعمل Rebuild بالاسم الجديد
     emit(CategoriesState.initial());
   }
 

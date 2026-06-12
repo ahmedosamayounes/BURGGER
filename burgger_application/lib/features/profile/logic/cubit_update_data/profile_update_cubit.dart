@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/networking/api_result.dart';
 import '../../data/models/profile_request_model.dart';
@@ -29,7 +30,9 @@ class ProfileUpdateCubit extends Cubit<ProfileUpdateState> {
     );
 
     response.when(
-      success: (responseModel) {
+      success: (responseModel) async {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('userName', nameController.text);
         emit(ProfileUpdateState.success(responseModel));
       },
       failure: (error) {

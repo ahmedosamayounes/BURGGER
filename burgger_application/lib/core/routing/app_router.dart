@@ -42,15 +42,10 @@ class AppRouter {
             ),
           ),
         );
-
       case RoutesString.home:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
-              BlocProvider(
-                create: (context) => CategoriesCubit(getIt())..getCategories(),
-              ),
-
               BlocProvider(
                 create: (context) => ProductsCubit(getIt())..getProduct(),
               ),
@@ -66,11 +61,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
-              BlocProvider(
-                create: (context) =>
-                    ProductDetailsCubit(getIt())
-                      ..getProductById(product.id ?? 1),
-              ),
+              BlocProvider(create: (context) => ProductDetailsCubit()),
               BlocProvider(
                 create: (context) => ToppingsCubit(getIt())..getToppings(),
               ),
@@ -81,7 +72,7 @@ class AppRouter {
               BlocProvider(create: (context) => getIt<CartCubit>()),
             ],
 
-            child: ProductDetails(product: settings.arguments as ProductData),
+            child: ProductDetails(product: product),
           ),
         );
 
@@ -109,8 +100,12 @@ class AppRouter {
           ),
         );
       case RoutesString.root:
-        return MaterialPageRoute(builder: (_) => RootScreen());
-
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => CategoriesCubit(getIt())..getCategories(),
+            child: const RootScreen(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

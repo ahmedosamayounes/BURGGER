@@ -8,42 +8,45 @@ import '../../../../core/theming/styles.dart';
 import '../../logic/cubit_update_data/profile_update_cubit.dart';
 import '../../logic/cubit_update_data/profile_update_state.dart';
 
-//  هنا: خليناه يورث من 
-//BlocListener مباشرة عشان يشتغل مع MultiBlocListener
-class ProfileUpdateBlocListener extends BlocListener<ProfileUpdateCubit, ProfileUpdateState> {
+class ProfileUpdateBlocListener
+    extends BlocListener<ProfileUpdateCubit, ProfileUpdateState> {
   ProfileUpdateBlocListener({super.key})
-      : super(
-          listenWhen: (previous, current) =>
-              current is Loading || current is Success || current is Error,
-          listener: (context, state) {
-            state.whenOrNull(
-              loading: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => const Center(
-                    child: CircularProgressIndicator(color: AppColors.primaryColor),
+    : super(
+        listenWhen: (previous, current) =>
+            current is Loading || current is Success || current is Error,
+        listener: (context, state) {
+          state.whenOrNull(
+            loading: () {
+              showDialog(
+                context: context,
+                builder: (context) => const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.primaryColor,
                   ),
-                );
-              },
-              success: (signupResponse) {
-                context.pop();
-                _showSuccessDialog(context);
-              },
-              error: (error) {
-                _setupErrorState(context, error);
-              },
-            );
-          },
-        );
+                ),
+              );
+            },
+            success: (signupResponse) {
+              context.pop();
+              _showSuccessDialog(context);
+            },
+            error: (error) {
+              _setupErrorState(context, error);
+            },
+          );
+        },
+      );
 
-  // خليت الفانكشنز static أو private عشان التنظيم
   static void _showSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Update Data Successful'),
-          content: const Text('Congratulations, you have changed your information successfully!'),
+          content: const Text(
+            'Congratulations, you have changed your information successfully!',
+          ),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(
@@ -51,7 +54,15 @@ class ProfileUpdateBlocListener extends BlocListener<ProfileUpdateCubit, Profile
                 foregroundColor: Colors.black,
               ),
               onPressed: () {
-                context.pushNamed(RoutesString.root);
+                // close Success Dialog
+                context.pop();
+
+                // remove Stack and go to root home
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RoutesString.root,
+                  (route) => false,
+                );
               },
               child: const Text('Continue'),
             ),
@@ -65,6 +76,7 @@ class ProfileUpdateBlocListener extends BlocListener<ProfileUpdateCubit, Profile
     context.pop();
     showDialog(
       context: context,
+
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.error, color: Colors.red, size: 32),
         content: Text(error, style: AppTextStyle.font14BalackColorBold),

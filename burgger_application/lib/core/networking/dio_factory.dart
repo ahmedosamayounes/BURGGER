@@ -1,7 +1,7 @@
-import '../helpers/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../helpers/constants.dart';
 import '../helpers/shared_pref_helper.dart';
 
 class DioFactory {
