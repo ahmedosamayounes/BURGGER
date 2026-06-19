@@ -1,0 +1,129 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+
+import '../../../../core/helpers/app_regex.dart';
+import '../../../../core/shared/app_text_form_field.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../cubit/login_cubit.dart';
+import 'paswword_validations.dart';
+
+class EmailAndPasswordForm extends StatefulWidget {
+  const EmailAndPasswordForm({super.key});
+
+  @override
+  State<EmailAndPasswordForm> createState() => _EmailAndPasswordFormState();
+}
+
+class _EmailAndPasswordFormState extends State<EmailAndPasswordForm> {
+  bool hasLowercase = false;
+  bool hasUppercase = false;
+  bool hasSpecialCharacters = false;
+  bool hasNumber = false;
+  bool hasMinLength = false;
+
+  // final fromKey = GlobalKey<FormState>();
+  bool isObscureText = true;
+  late TextEditingController passwordController;
+  @override
+  void initState() {
+    super.initState();
+    passwordController = context.read<LoginCubit>().passwordController;
+    setupPasswordControllerListener();
+  }
+
+  void setupPasswordControllerListener() {
+    passwordController.addListener(() {
+      setState(() {
+        hasLowercase = AppRegex.hasLowerCase(passwordController.text);
+        hasUppercase = AppRegex.hasUpperCase(passwordController.text);
+        hasSpecialCharacters = AppRegex.hasSpecialCharacter(
+          passwordController.text,
+        );
+        hasNumber = AppRegex.hasNumber(passwordController.text);
+        hasMinLength = AppRegex.hasMinLength(passwordController.text);
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: context.read<LoginCubit>().formKey,
+      child: Column(
+        children: [
+          AppTextFormField(
+            
+            prefixIcon: Icon(
+              Icons.email_outlined,
+              size: 20.sp,
+              color: AppColors.hintColor,
+            ),
+            text: 'EMAIL OR USERNAME',
+            hinttext: 'Chef@pureburger.com' , hintStyle: TextStyle(fontSize: 14.sp),
+            
+            controller: context.read<LoginCubit>().emailController,
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isEmailValid(value)) {
+                return 'Please enter a valid email';
+              }
+              return null;
+            },
+          ),
+          Gap(20),
+          AppTextFormField(
+            text: 'PASSWORD',
+            prefixIcon: Icon(Icons.lock_outline , size: 20.sp, color: AppColors.hintColor,),
+            hinttext: '********' ,hintStyle: TextStyle(fontSize: 14.sp),
+            controller: context.read<LoginCubit>().passwordController,
+            isObscureText: isObscureText,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isObscureText = !isObscureText;
+                });
+              },
+              child: Icon(
+                isObscureText ? Icons.visibility_off : Icons.visibility,
+                size: 22.sp,
+                color: AppColors.hintColor,
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a valid password';
+                
+              }
+            },
+          ),
+          Gap(8),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'Forgot Password?',
+              
+              style: TextStyle(color: AppColors.secoundryColor ,fontSize: 14.sp),
+            ),
+          ),
+
+          Gap(5.h),
+          PasswordValidations(
+            hasLowerCase: hasLowercase,
+            hasUpperCase: hasUppercase,
+            hasSpecialCharacters: hasSpecialCharacters,
+            hasNumber: hasNumber,
+            hasMinLength: hasMinLength,
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:hive_flutter/adapters.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'products_model.g.dart';
@@ -8,11 +9,7 @@ class ProductsModel {
   final String? message;
   final List<ProductData>? data;
 
-  ProductsModel({
-    this.code,
-    this.message,
-    this.data,
-  });
+  ProductsModel({this.code, this.message, this.data});
 
   factory ProductsModel.fromJson(Map<String, dynamic> json) =>
       _$ProductsModelFromJson(json);
@@ -20,13 +17,25 @@ class ProductsModel {
   Map<String, dynamic> toJson() => _$ProductsModelToJson(this);
 }
 
+@HiveType(typeId: 0)
 @JsonSerializable()
 class ProductData {
+  @HiveField(0)
   final int? id;
+
+  @HiveField(1)
   final String? name;
+
+  @HiveField(2)
   final String? description;
+
+  @HiveField(3)
   final String? image;
+
+  @HiveField(4)
   final String? rating;
+
+  @HiveField(5)
   final String? price;
 
   ProductData({

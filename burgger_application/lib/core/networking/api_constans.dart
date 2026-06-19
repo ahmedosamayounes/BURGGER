@@ -24,7 +24,7 @@ class ApiErrors {
   static const String conflictError = "conflictError";
   static const String internalServerError = "internalServerError";
   static const String unknownError = "unknownError";
-  static const String timeoutError = "timeoutError";
+  static const String timeoutError = "timeoutError";  
   static const String defaultError = "defaultError";
   static const String cacheError = "cacheError";
   static const String noInternetError = "noInternetError";

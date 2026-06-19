@@ -1,23 +1,22 @@
+import '../../features/cart/presentation/cubit/cart_cubit.dart';
+import '../../features/cart/presentation/screens/cart_screen.dart';
+import '../../features/home/domain/entities/product_entity.dart';
+import '../../features/home/presentation/cubit/categories/categories_cubit.dart';
+import '../../features/home/presentation/cubit/products/products_cubit.dart';
+import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/login/presentation/cubit/login_cubit.dart';
+import '../../features/login/presentation/screens/login_screen.dart';
+import '../../features/product_details/presentation/cubit/product_deatlies/product_deatlies_cubit.dart';
+import '../../features/product_details/presentation/cubit/side_options/side_options_cubit.dart';
+import '../../features/product_details/presentation/cubit/toppings/toppings_cubit.dart';
+import '../../features/product_details/presentation/screens/product_details_screen.dart';
+import '../../features/profile/presentation/cubit/cubit_get_data/profile_cubit.dart';
+import '../../features/profile/presentation/cubit/cubit_update_data/profile_update_cubit.dart';
+import '../../features/profile/presentation/screens/profile_screen.dart';
+import '../../features/sign_up/presentation/cubit/signup_cubit.dart';
+import '../../features/sign_up/presentation/screens/signup_screen.dart';
 import '../di/depnedency_injaction.dart';
 import 'routes_string.dart';
-import '../../features/cart/logic/cubit/cart_cubit.dart';
-import '../../features/cart/ui/cart_screen.dart';
-import '../../features/home/data/models/products/products_model.dart';
-import '../../features/home/logic/cubit/categories/categories_cubit.dart';
-import '../../features/product_details/logic/cubit/product_deatlies/product_deatlies_cubit.dart';
-import '../../features/home/logic/cubit/products/products_cubit.dart';
-import '../../features/home/ui/home_screen.dart';
-
-import '../../features/product_details/logic/cubit/side_options/side_options_cubit.dart';
-import '../../features/product_details/logic/cubit/toppings/toppings_cubit.dart';
-import '../../features/product_details/ui/product_details_screen.dart';
-import '../../features/login/logic/cubit/login_cubit.dart';
-import '../../features/login/ui/login_screen.dart';
-import '../../features/profile/logic/cubit_get_data/profile_cubit.dart';
-import '../../features/profile/logic/cubit_update_data/profile_update_cubit.dart';
-import '../../features/profile/ui/profile_screen.dart';
-import '../../features/signup/logic/cubit/signup_cubit.dart';
-import '../../features/signup/ui/signup_screen.dart';
 import '../../root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,36 +41,40 @@ class AppRouter {
             ),
           ),
         );
+
       case RoutesString.home:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => ProductsCubit(getIt())..getProduct(),
+                create: (context) => getIt<ProductsCubit>()..getProduct(),
               ),
-              BlocProvider(create: (context) => ProfileCubit(getIt())),
+              BlocProvider(
+                create: (context) => getIt<ProfileCubit>(),
+              ),
             ],
             child: HomeScreen(),
           ),
         );
 
       case RoutesString.productDetail:
-        final product = settings.arguments as ProductData;
-
+        final product = settings.arguments as ProductEntity;
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => ProductDetailsCubit()),
               BlocProvider(
-                create: (context) => ToppingsCubit(getIt())..getToppings(),
+                create: (context) => getIt<ProductDetailsCubit>(),
               ),
               BlocProvider(
-                create: (context) =>
-                    SideOptionsCubit(getIt())..getSideOptions(),
+                create: (context) => getIt<ToppingsCubit>()..getToppings(),
               ),
-              BlocProvider(create: (context) => getIt<CartCubit>()),
+              BlocProvider(
+                create: (context) => getIt<SideOptionsCubit>()..getSideOptions(),
+              ),
+              BlocProvider(
+                create: (context) => getIt<CartCubit>(),
+              ),
             ],
-
             child: ProductDetails(product: product),
           ),
         );
@@ -80,7 +83,6 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             body: BlocProvider(
-              //    create: (context) => CartCubit(getIt()),
               create: (context) => getIt<CartCubit>(),
               child: CartScreen(),
             ),
@@ -92,24 +94,30 @@ class AppRouter {
           builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => ProfileCubit(getIt())..getProfileData(),
+                create: (context) => getIt<ProfileCubit>()..getProfileData(),
               ),
-              BlocProvider(create: (context) => ProfileUpdateCubit(getIt())),
+              BlocProvider(
+                create: (context) => getIt<ProfileUpdateCubit>(),
+              ),
             ],
             child: ProfileScreen(),
           ),
         );
+
       case RoutesString.root:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => CategoriesCubit(getIt())..getCategories(),
+            create: (context) => getIt<CategoriesCubit>()..getCategories(),
             child: const RootScreen(),
           ),
         );
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
-            body: Center(child: Text('No route defined for ${settings.name}')),
+            body: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
           ),
         );
     }

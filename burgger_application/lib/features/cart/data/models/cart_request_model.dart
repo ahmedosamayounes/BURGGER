@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'cart_request_model.g.dart'; 
+part 'cart_request_model.g.dart';
 
 @JsonSerializable()
 class CartRequestModel {
@@ -8,7 +8,7 @@ class CartRequestModel {
 
   CartRequestModel({this.items});
 
-  factory CartRequestModel.fromJson(Map<String, dynamic> json) => 
+  factory CartRequestModel.fromJson(Map<String, dynamic> json) =>
       _$CartRequestModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CartRequestModelToJson(this);
@@ -18,26 +18,25 @@ class CartRequestModel {
 class CartItem {
   @JsonKey(name: 'product_id')
   final int productId;
-  
+
   final int quantity;
-  
-  // استخدمنا double لأنك باعت في المثال 0.1
+
   final double spicy;
-  
+
   final List<int> toppings;
-  
+
   @JsonKey(name: 'side_options')
   final List<int> sideOptions;
 
   CartItem({
-  required   this.productId,
-  required   this.quantity,
-  required   this.spicy,
-   required  this.toppings,
-   required  this.sideOptions,
+    required this.productId,
+    required this.quantity,
+    required this.spicy,
+    required this.toppings,
+    required this.sideOptions,
   });
 
-  factory CartItem.fromJson(Map<String, dynamic> json) => 
+  factory CartItem.fromJson(Map<String, dynamic> json) =>
       _$CartItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$CartItemToJson(this);

@@ -14,11 +14,9 @@ class CategoriesModel {
     this.data,
   });
 
-  // تحويل من JSON إلى Object
   factory CategoriesModel.fromJson(Map<String, dynamic> json) => 
       _$CategoriesModelFromJson(json);
 
-  // تحويل من Object إلى JSON
   Map<String, dynamic> toJson() => _$CategoriesModelToJson(this);
 }
 

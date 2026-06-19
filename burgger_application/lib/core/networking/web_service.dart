@@ -12,8 +12,8 @@ import '../../features/login/data/models/login_response_model.dart';
 import '../../features/product_details/data/models/product_option/product_option_model.dart';
 import '../../features/profile/data/models/profile_request_model.dart';
 import '../../features/profile/data/models/profile_response_model.dart';
-import '../../features/signup/data/models/signup_request_model.dart';
-import '../../features/signup/data/models/signup_response_model.dart';
+import '../../features/sign_up/data/models/signup_request_model.dart';
+import '../../features/sign_up/data/models/signup_response_model.dart';
 import 'api_constans.dart';
 
 part 'web_service.g.dart';
@@ -44,24 +44,25 @@ abstract class WebService {
   @GET("${ApiConstants.productsEndpoint}/{id}")
   Future<ProductData> getProductById(@Path("id") int id);
 
-  // Product Deatlies (Toppings)
+  // Product Deatlies Screen  (Toppings)
   @GET(ApiConstants.toppingsEndpoint)
   Future<ProductOptionModel> getToppings();
 
-  // Product Deatlies (Side Options)
+  // Product Deatlies Screen (Side Options)
   @GET(ApiConstants.sideOptionsEndpoint)
   Future<ProductOptionModel> getSideOptions();
 
-  // Add to Cart Screen
+  // Cart Screen (Add to Cart)
   @POST(ApiConstants.cartEndpoint)
   Future<AddCartResponseModel> addToCart(
     @Body() CartRequestModel cartRequestModel,
   );
 
-  // Get Cart Data
+  //Cart Screen ( Get Cart Data )
   @GET(ApiConstants.cartdata)
   Future<CartResponseModel> getCart();
 
+  // Cart Screen (deleter from cart)
   @DELETE("${ApiConstants.deleteItemFromCart}/{id}")
   Future<void> deleteFromCart(@Path("id") int id);
 
@@ -69,9 +70,9 @@ abstract class WebService {
   @GET(ApiConstants.profileEndPoint)
   Future<ProfileResponseModel> getProfileData();
 
+  // Profile Screen (Update Profile Data)
   @POST(ApiConstants.profileUpdate)
   Future<ProfileResponseModel> updateProfileData(
     @Body() ProfileRequestModel profileRequestModel,
   );
-  
 }
