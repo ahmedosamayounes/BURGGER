@@ -16,6 +16,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
     emit(const CategoriesState.initial());
   }
+  
 
   void getCategories() async {
     emit(const CategoriesState.loading());
