@@ -1,9 +1,8 @@
-import '../../domain/entities/option_entity.dart';
-import '../../domain/repositories/side_options_repository.dart';
-
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../../../core/networking/web_service.dart';
+import '../../domain/entities/option_entity.dart';
+import '../../domain/repositories/side_options_repository.dart';
 
 class SideOptionsRepoImpl implements SideOptionsRepository {
   final WebService webService;

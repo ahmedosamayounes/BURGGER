@@ -1,11 +1,9 @@
-import '../../data_sources/products_local_data_source.dart';
-
-import '../../../domain/entities/product_entity.dart';
-import '../../../domain/repositories/products_repository.dart';
-
 import '../../../../../core/networking/api_error_handler.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../../core/networking/web_service.dart';
+import '../../../domain/entities/product_entity.dart';
+import '../../../domain/repositories/products_repository.dart';
+import '../../data_sources/products_local_data_source.dart';
 
 class ProductsRepoImpl implements ProductsRepository {
   final WebService webService;

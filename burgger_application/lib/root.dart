@@ -1,14 +1,13 @@
-import 'features/home/presentation/cubit/categories/categories_cubit.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'core/theming/styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/routing/app_router.dart';
 import 'core/routing/routes_string.dart';
 import 'core/theming/app_colors.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'core/theming/styles.dart';
+import 'features/home/presentation/cubit/categories/categories_cubit.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});

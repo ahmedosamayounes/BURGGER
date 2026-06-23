@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+
 import '../../../../../core/networking/api_result.dart';
 import '../../../domain/use_cases/get_profile_data_use_case.dart';
 import 'profile_state.dart';

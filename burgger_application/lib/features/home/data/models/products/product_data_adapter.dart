@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 import 'products_model.dart'; 
 
 class ProductDataAdapter extends TypeAdapter<ProductData> {

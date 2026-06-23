@@ -1,9 +1,9 @@
 
 
-import '../../../domain/entities/option_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/networking/api_error_handler.dart';
+import '../../../domain/entities/option_entity.dart';
 
 part 'side_options_state.freezed.dart';
 @freezed

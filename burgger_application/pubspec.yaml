@@ -12,7 +12,6 @@ dependencies:
   build_runner: ^2.4.6
   cupertino_icons: ^1.0.8
   dio: ^5.9.1
-  easy_localization: ^3.0.8
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -28,8 +27,7 @@ dependencies:
   google_fonts: ^8.0.2
   hive_flutter: ^1.1.0
   intl: ^0.20.2
-  json_annotation: 4.11.0
-  
+  json_annotation: ^4.11.0
   json_serializable: ^6.13.0
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.9.2
@@ -38,11 +36,21 @@ dependencies:
   shimmer: ^3.0.0
 
 dev_dependencies:
-  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/images/icon.png"
 
 flutter:
   uses-material-design: true
+
   assets:
     - assets/images/

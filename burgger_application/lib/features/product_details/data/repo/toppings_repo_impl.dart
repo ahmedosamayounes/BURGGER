@@ -1,9 +1,8 @@
-import '../../domain/entities/option_entity.dart';
-import '../../domain/repositories/toppings_repository.dart';
-
 import '../../../../core/networking/api_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../../../core/networking/web_service.dart';
+import '../../domain/entities/option_entity.dart';
+import '../../domain/repositories/toppings_repository.dart';
 
 class ToppingsRepoImpl implements ToppingsRepository {
   final WebService webService;

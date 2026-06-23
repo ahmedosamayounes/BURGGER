@@ -1,8 +1,8 @@
 
-import '../../../domain/entities/product_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/networking/api_error_handler.dart';
+import '../../../domain/entities/product_entity.dart';
 
 part 'products_state.freezed.dart';
 

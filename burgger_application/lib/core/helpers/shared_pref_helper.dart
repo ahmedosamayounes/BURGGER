@@ -69,7 +69,7 @@ class SharedPrefHelper {
 static Future<String?> getString(String key) async {
     debugPrint('SharedPrefHelper : getString with key : $key');
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getString(key); // شيلنا الـ ?? ''
+    return sharedPreferences.getString(key); 
   }
 
   /// Saves a [value] with a [key] in the FlutterSecureStorage.
@@ -84,7 +84,7 @@ static Future<String?> getString(String key) async {
 static Future<String?> getSecuredString(String key) async {
     const flutterSecureStorage = FlutterSecureStorage();
     debugPrint('FlutterSecureStorage : getSecuredString with key : $key');
-    return await flutterSecureStorage.read(key: key); // شيلنا الـ ?? ''
+    return await flutterSecureStorage.read(key: key); 
   }
 
   /// Removes all keys and values in the FlutterSecureStorage
