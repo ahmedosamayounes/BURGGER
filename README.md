@@ -1,11 +1,11 @@
-# 🍔 Burgger App - Production-Ready E-Commerce Mobile Application
+# <img src="https://github.com/user-attachments/assets/d2416038-f112-4761-b62a-02cbf73e80fa" width="38" height="38" valign="middle"/> Burgger App - E-Commerce Mobile Application
 
 [![Flutter Version](https://img.shields.io/badge/Flutter-%3E%3D%203.10.0-blue.svg?style=flat-square&logo=flutter)](https://flutter.dev)
 [![Dart Version](https://img.shields.io/badge/Dart-%3E%3D%203.0-navy.svg?style=flat-square&logo=dart)](https://dart.dev)
-[![Architecture](https://img.shields.io/badge/Architecture-Feature--First%20Clean%20Code-emerald.svg?style=flat-square)](https://clean-architecture.org)
+[![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture%20(Feature--First)-emerald.svg?style=flat-square)](https://clean-architecture.org)
 [![State Management](https://img.shields.io/badge/State%20Management-Bloc%20%2F%20Cubit-red.svg?style=flat-square)](https://pub.dev/packages/flutter_bloc)
 
-**Burgger App** is a high-performance, fully-featured E-commerce mobile application tailored for food delivery. Built with **Flutter** and **Dart**, this project showcases production-grade software engineering practices, prioritizing **Scalability, Clean Architecture, and Highly-Maintainable Modular Code**.
+**Burgger App** is a food delivery e-commerce mobile application built with **Flutter** and **Dart**. The project serves as a practical implementation of a modular codebase, demonstrating how to handle remote data fetching, local data persistence, and state management across structured features.
 
 ---
 
@@ -25,68 +25,80 @@
 
 ---
 
-## 🏗 Architectural Overview
+## 🏗 Architectural Design
 
-The app strictly follows **Feature-First Clean Architecture**. This decouples business logic from UI components, offering smooth testability and parallel development scaling across modules.
+The application implements a **Feature-First Clean Architecture** pattern. Each feature is decoupled into separate layers to isolate business logic from UI components and external framework dependencies.
 
 <p align="center">
-  <img width="850" alt="BURGGER App System Design" src="https://github.com/user-attachments/assets/6cc68b70-134d-4fc4-b3aa-919d560755c6" />
+<img width="768" height="1376" alt="Image" src="https://github.com/user-attachments/assets/410ad19b-2c55-461e-9ddc-263d2e27bad4" />
 </p>
 
-### 📁 Directory Layout & Module Structure
+### 📁 Feature-Based Directory Layout
+
+Each vertical feature is structured into three standard layers:
+
 ```text
 lib/
-├── core/               # App-wide foundational architecture (Shared)
-│   ├── di/             # Dependency Injection Setup (Get_it)
-│   ├── networking/     # Dio Client, Rest Client, Interceptors, Error Handling
-│   ├── routing/        # AppRouter (onGenerateRoute) & Screen Path Definitions
-│   ├── shared/         # Universal Core Reusable Widgets
-│   └── theming/        # Design System (Custom AppColors & TextStyles)
-├── features/           # Completely decoupled domain features
-│   ├── login/          # Secure Authentication Logic & UI
-│   ├── signup/         # Multi-step onboarding and account creation
-│   ├── home/           # Product Discovery, Dynamic Categories, Banners
-│   ├── product_details/# Customized orders (Toppings, Side options state)
-│   ├── cart/           # Reactive Cart Calculation & Order Placement Flow
-│   └── profile/        # User Profile Management & Reactive Updates
-└── main.dart           # Application Root entry point
-<br>
-
+├── core/                        # Global shared infrastructure
+│   ├── di/                      # Dependency Injection setup (Get_It)
+│   ├── networking/              # Dio client, Retrofit setup, and error models
+│   ├── routing/                 # App router using onGenerateRoute
+│   └── theming/                 # App styling tokens (Colors & Fonts)
+└── features/                    # Independent modules
+    └── home/                    # Feature Example
+        ├── data/                # Data Layer
+        │   ├── datasources/     # Remote API Client & Local DB boxes
+        │   ├── models/          # Data Transfer Objects (DTOs) & JSON parsers
+        │   └── repositories/    # Concrete Repository implementations
+        ├── domain/              # Domain Layer (Pure Dart)
+        │   ├── entities/        # Core business models used by the UI
+        │   ├── repositories/    # Abstract repository interfaces
+        │   └── usecases/        # Single-responsibility use cases (e.g., GetProductsUseCase)
+        └── presentation/        # Presentation Layer
+            ├── cubit/           # State management logic
+            └── widgets/         # Components and feature screens
 ```
 
-<br>
 
 
-## 🛠 Advanced Technical Capabilities
 
-### 1. Advanced State Management (Bloc / Cubit)
-* Enforces single-responsibility state management using **Cubits** for predictable lifecycle actions.
-* Utilizes `BlocListener` efficiently to map background side-effects (e.g., launching Success Dialogs, routing on successful validation, triggering system snackbars).
-* Complex business state mutation handled for the **Toppings & Side Options System**, calculating real-time pricing updates before cart injection.
+## Technical Implementation Details
+1. Data Flow & Separation of Concerns
+Domain Layer Isolation: The domain layer contains pure Dart logic. Entities and Use Cases do not depend on external data packages or API configurations.
 
-### 2. Production Networking & Type-Safe API Client
-* **Dio Factory Client:** Equipped with centralized error interceptors, authorization token headers handling, and automated network logging via `pretty_dio_logger`.
-* **Retrofit REST Engine:** Fully type-safe REST integrations, minimizing boilerplate code and ensuring strict type parsing through code generation.
-* **Resilient Error Handler:** Global API failure mapping that seamlessly catches server errors, timeouts, or bad payloads, translating them into human-readable UI prompts.
 
-### 3. Local Caching & Data Security
-* **Flutter Secure Storage:** Encrypts and securely caches sensitive user auth tokens (`JWT`) locally.
-* **Shared Preferences:** Handles high-speed caching for user sessions and light/persistent app preferences.
+Data Mapping: Implements explicit mappers to translate API Models (DTOs) into domain Entities before passing them to the presentation layer, maintaining a stable UI model even if contract keys change.
 
-### 4. Enterprise-Grade UI Development
-* **Device Responsiveness:** Fully adaptive UI scaling driven by `flutter_screenutil` using a base baseline design (360x690).
-* **Sleek UX Feedback:** Native startup rendering through `flutter_native_splash` alongside contextual asset rendering via `shimmer` loads.
-* **Interactive Checkout Components:** Integrated an aesthetic `flutter_credit_card` input engine during the checkout preview step.
+2. Local Persistence & Offline Support
+Hive Caching: Integrated Hive in the Home feature data layer to store the products list locally.
+
+Data Flow: The application loads cached data immediately on startup for instant UI rendering, then performs an asynchronous remote network request to update the local store and refresh the view.
+
+3. State Management (Bloc / Cubit)
+Uses Cubits to manage specific state updates, such as tracking active selections, dynamic toppings, and computing totals inside the cart.
+
+Uses BlocListener to handle asynchronous background operations (e.g., executing navigation commands or displaying dialogs upon successful authentication).
+
+4. Networking Engine
+Type-Safe Clients: Built with Retrofit and Dio, utilizing code generation (build_runner) to handle endpoint configurations and JSON deserialization.
+
+Interceptors: Features an interceptor pipeline for unified request/response logging via pretty_dio_logger and auth header injection using tokens retrieved from flutter_secure_storage.
+
+Error Handling: Features a mapping utility that catches HTTP errors, network timeouts, or parsing issues, converting them into readable error objects for the UI.
+
 ---
-## 🚀 Tech Stack & Core Libraries
 
-| Category | Technology Used |
+
+
+
+## Tech Stack & Core
+
+
+| Category | Libraries Used |
 | :--- | :--- |
 | **State Management** | `bloc`, `flutter_bloc` |
 | **Networking** | `dio`, `retrofit`, `pretty_dio_logger` |
-| **Dependency Injection**| `get_it` |
+| **Local Storage** | `hive`, `hive_flutter`, `shared_preferences`, `flutter_secure_storage` |
+| **Dependency Injection** | `get_it` |
 | **Code Generation** | `freezed`, `json_serializable`, `retrofit_generator`, `build_runner` |
-| **Storage / Security** | `flutter_secure_storage`, `shared_preferences` |
-| **UI UX Helpers** | `flutter_screenutil`, `flutter_native_splash`, `flutter_svg`,`gap`|
-
----
+| **UI UX / Responsive** | `flutter_screenutil`, `flutter_native_splash`, `flutter_svg`, `gap`, `shimmer`, `flutter_credit_card` |
